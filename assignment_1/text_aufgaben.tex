@@ -1,17 +1,29 @@
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[english, ngerman]{babel}
-\usepackage{amsmath,amsthm,verbatim,amssymb,amsfonts,amscd, graphicx}
-\usepackage{graphicx}
+\usepackage{amsmath,amsthm,verbatim,amssymb,amsfonts,amscd}
 \usepackage{enumerate}
+\usepackage{listings}
+\usepackage{courier}
+\lstset{
+  numbers=left,
+  language=C,
+  basicstyle=\footnotesize\ttfamily,
+  breaklines=true,
+  morekeywords={function}
+}
+\newcommand{\abs}[1]{\left| #1 \right| }
 
+
+\author{Felix Schrader, Jens Duffert, Eduard Sauter}
+\title{Datenstrukturen und Algorithmen: Haus\"ubung 1}
 \begin{document}
 \subsection*{Aufgabe 1}
-\begin{enumerate}[a)]
+\begin{enumerate}[i)]
 
 \item Der Algorithmus sortiert die Zahlen einer Reihe in aufsteigender Reihenfolge.
 
-\begin{table}[H]
+\begin{table}[h!]
 \centering
 \begin{tabular}{|c|c|c|}
 \hline 
@@ -79,6 +91,9 @@ x=x+1
     der L\"osung des Problems durchzuf\"uhren.
   \item
     Es widerspricht dem DRY (''Don't Repeat yourself``) Paradigma.
+  \item
+    Das don't Repeat yourself Paradigma ist sehr interessant, auch das es auf
+    Definition von Variablen angewendet werden kann.
 \end{enumerate}
 
 \end{document}
