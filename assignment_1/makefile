@@ -1,7 +1,7 @@
 # felix: 3053850
 # eduard: 3053470
 zip_prefix = $(shell basename "$$PWD")
-zip_suffix = %gruppe%felix_shrader_3053850%eduard_sauter_3053470
+zip_suffix = %gruppe%felix_schrader_3053850%eduard_sauter_3053470
 zip_name = $(zip_prefix)$(zip_suffix)
 
 zip:
