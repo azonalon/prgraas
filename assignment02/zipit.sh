@@ -1,4 +1,4 @@
-zip_prefix=$(basename "$$PWD")
+zip_prefix=$(basename "$PWD")
 zip_name='assignment02'
 
 make clean
