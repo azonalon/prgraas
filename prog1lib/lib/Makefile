@@ -53,3 +53,4 @@ clean:
 	rm -f $(OBJS)
 	rm -f $(SRCS:.c=.d)
 	rm -rf $(SRCS:.c=.dSYM)
+	rm .DS_Store ../.DS_Store ../script_examples/.DS_Store ../lecture_examples/.DS_Store

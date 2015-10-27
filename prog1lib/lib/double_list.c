@@ -929,7 +929,7 @@ double dl_square(double value, int index) {
 }
 
 double dl_rnd(int index, double maximum) {
-	return double_rnd(maximum); // index not used
+	return d_rnd(maximum); // index not used
 }
 
 double dl_times(double value, int index, double x) {

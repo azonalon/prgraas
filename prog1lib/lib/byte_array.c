@@ -835,7 +835,7 @@ Byte ba_square(Byte value, int index) {
 }
 
 Byte ba_rnd(int index, Byte maximum) {
-	return int_rnd(maximum); // index not used
+	return i_rnd(maximum); // index not used
 }
 
 Byte ba_times(Byte value, int index, Byte x) {
@@ -1202,7 +1202,7 @@ bool ba_check_expect_file_line(const char *file, const char *function, int line,
 	}
 	if (a->s != sizeof(Byte)) {
 		printf("%s, line %d: Actual element size %d "
-			"differs from expected element size %lu\n", file, line, a->s, sizeof(Byte));
+			"differs from expected element size %lu\n", file, line, a->s, (unsigned long)sizeof(Byte));
 		return false;
 	}
 	if (a->n < 0) {

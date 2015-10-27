@@ -1,42 +1,38 @@
 /*
-Compile: make wages
-Run: ./wages
+Compile: make overtime
+Run: overtime
 */
  
 #include "base.h"
  
 /*
-Design a function that computes weekly wages with overtime from hours worked.
-The hourly rate is 10 €/hour. Regular working time is 40 hours/week. Overtime
-is paid 150% of the normal rate of pay.
+Design a function that computes how much overtime has been worked given an 
+overall worktime.
 */
  
 typedef int Hours; // represents hours worked
-typedef int Cents; // represents wage in cents
  
-// Hours -> Cents
-Cents hours_to_wages(Hours hours);
+// Hours -> Hours
+Hours overtime_worked(Hours hours);
  
-void hours_to_wages_test() {
-    check_expect_i(hours_to_wages(0), 0);          // line 20
-    check_expect_i(hours_to_wages(20), 20 * 1000); // line 21
-    check_expect_i(hours_to_wages(39), 39 * 1000); // line 22
-    check_expect_i(hours_to_wages(40), 40 * 1000); // line 23
-    check_expect_i(hours_to_wages(41), 40 * 1000 + 1 * 1500);
-    check_expect_i(hours_to_wages(45), 40 * 1000 + 5 * 1500);
+void overtime_worked_test() {
+    check_expect_i(overtime_worked(30), 0);  // below regular time
+    check_expect_i(overtime_worked(40), 0);  // regular time
+    check_expect_i(overtime_worked(50), 10); // 10 hours overtime
 }
+
+const Hours WEEKLY_HOURS = 40; // regular work hours per week
  
-// Compute the wage in cents given the number of hours worked.
-Cents hours_to_wages(Hours hours) {
-    if (hours <= 40) {
-        return hours * 1000;
-    } 
-    else {
-        return 40 * 1000 + (hours - 40) * 1500;
+// Compute the ovetime in hours given the number of hours worked.
+Hours overtime_worked(Hours hours) {
+    if (hours <= WEEKLY_HOURS) {
+        return 0;
+    } else {
+        return hours - WEEKLY_HOURS;
     }
 }
  
 int main(void) {
-    hours_to_wages_test();
+    overtime_worked_test();
     return 0;
 }

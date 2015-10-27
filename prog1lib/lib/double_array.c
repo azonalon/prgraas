@@ -902,7 +902,7 @@ double da_square(double value, int index) {
 }
 
 double da_rnd(int index, double maximum) {
-	return double_rnd(maximum); // index not used
+	return d_rnd(maximum); // index not used
 }
 
 double da_times(double value, int index, double x) {
@@ -1210,7 +1210,7 @@ bool da_check_within_file_line(const char *file, const char *function, int line,
 	}
 	if (a->s != sizeof(double)) {
 		printf("%s, line %d: Actual element size %d "
-			"differs from expected element size %lu\n", file, line, a->s, sizeof(double));
+			"differs from expected element size %lu\n", file, line, a->s, (unsigned long)sizeof(double));
 		return false;
 	}
 	if (a->n < 0) {
