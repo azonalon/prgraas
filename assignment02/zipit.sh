@@ -8,4 +8,4 @@ pdflatex -shell-escape -file-line-error -interaction=nonstopmode \
 
 rm -f ${zip_name}.zip
 
-zip -r ${zip_name}.zip . -x \*.aux \*.tex \*.log makefile
+zip -r ${zip_name}.zip . -x \*.aux \*.tex \*.log .\* makefile zipit.sh

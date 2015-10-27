@@ -10,108 +10,42 @@
   language=C,
   basicstyle=\footnotesize\ttfamily,
   breaklines=true,
-  morekeywords={function}
 }
 \newcommand{\abs}[1]{\left| #1 \right| }
 
 
 \author{Felix Schrader, 3053850 \\
-Eduard Sauter, 3053470 }
-\title{Programmieren I: Haus\"ubung 1}
+      Eduard Sauter, 3053470 }
+\title{Programmieren I: Haus\"ubung 2}
 \begin{document}
 \maketitle
-
-\subsection*{Aufgabe 1}
+\subsection*{Aufgabe 3: Skript}
 \begin{enumerate}[a)]
+  \item Falls Funktionen Nebeneffekte besitzen, so werden auch Variablen
+    modifiziert, welche nicht als Argument der Funktion spezifiziert waren.
+    Man kann also nicht mehr annehmen, dass eine Variable nach berechnung 
+    der Funktion einen bestimmten Wert beh\"alt. Ein algebraischer
+    Ausdruck kann keine Zuweisungen beinhalten. Ein Funktionsname in der 
+    Programmiersprache C erf\"ullt diese jedoch Eigenschaft nicht. Deswegen sind
+    algebraische Berechnungen mit C Funktionen nicht immer m\"oglich.
 
-  \item Der Algorithmus sortiert die Zahlen einer Reihe in aufsteigender
-    Reihenfolge.
+  \item In switch-statements darf nach case nur eine Konstante stehen, 
+    kein beliebiger Ausdruck. Jedes \texttt{case} Statement muss mit
+    \texttt{break} beendet werden wenn man nicht will, dass die anderen F\"alle
+    auch \"uberpr\"uft werden. Anders formuliert: Die f\"alle schlie\ss{}en
+    sich einander nicht gegenseitig aus.  Man neigt dazu, dies zu vergessen.
+    Das beinhaltet auch den Fall, dass keiner der F\"alle eintritt. Man
+    tendiert hierbei zu vergessen dass die M\"oglichkeit besteht, dieser Fall
+    auch abgedeckt werden muss.
 
-    \begin{table}[h!]
-      \centering
-      \begin{tabular}{|c|c|c|}
-        \hline 
-        Schrittnr. & Zustand vor Schritt & Algorithmus-Schritt \\ 
-        \hline 
-        1 & 11, 5, 1 & 11 wird ausgew\"ahlt \\ 
-        \hline 
-        2 & 11, 5, 1 & mit 5 vergleichen \\ 
-        \hline 
-        3 & 11, 5, 1 & $11>5\curvearrowright$ vertauschen und zur\"uck zum Anfang \\ 
-        \hline 
-        4 & 5, 11, 1 & 5 wird ausgew\"ahlt \\ 
-        \hline 
-        5 & 5, 11, 1 & mit 11 vergleichen \\ 
-        \hline 
-        6 & 5, 11, 1 & $5<11\curvearrowright$ n\"achste Zahl \\ 
-        \hline 
-        7 & 5, 11, 1 & 11 wird ausgew\"ahlt \\ 
-        \hline 
-        8 & 5, 11, 1 & mit 1 vergleichen \\ 
-        \hline 
-        9 & 5, 11, 1 & $11>1\curvearrowright$ vertauschen und zur\"uck zum Anfang \\ 
-        \hline 
-        10 & 5, 1, 11 & 5 wird ausgew\"ahlt \\ 
-        \hline 
-        11 & 5, 1, 11 & mit 1 vergleichen \\ 
-        \hline 
-        12 & 5, 1, 11 & $5>1\curvearrowright$ vertauschen und zur\"uck zum Anfang \\ 
-        \hline 
-        13 & 1, 5, 11 & 1 wird ausgew\"ahlt \\ 
-        \hline 
-        14 & 1, 5, 11 & mit 5 vergleichen \\ 
-        \hline 
-        15 & 1, 5, 11 & $1<5\curvearrowright$ n\"achste Zahl \\ 
-        \hline 
-        16 & 1, 5, 11 & 5 wird ausgew\"ahlt \\ 
-        \hline 
-        17 & 1, 5, 11 & mit 11 vergleichen \\ 
-        \hline 
-        18 & 1, 5, 11 & $5<11\curvearrowright$ n\"achste Zahl \\ 
-        \hline 
-        19 & 1, 5, 11 & Ende der Reihe erreicht \\ 
-        \hline 
-      \end{tabular} 
-    \end{table}
+  \item Mit \texttt{enum} kann man Intervalle implementieren. Enums verhalten
+    sich im Prinzip genauso wie als \texttt{const} deklarierte Variablen.
 
-
-  \item Der Algorithmus arbeitet f\"ur jede m\"ogliche Zahlenreihe korrekt, da 
-das Ende der Zahlenreihe nur erreicht wird, wenn die Zahlen bereits korrekt
-sortiert sind. Nach dem Vertauschen zweier Zahlen wird jeweils wieder vorne
-angefangen, sodass dadurch keine Probleme entstehen k\"onnen. Auch das doppelte
-auftauchen einer Zahl in der Reihe ist kein Problem, da der Algorithmus die
-beiden Zahlen, wenn sie direkt nacheinander auftauchen als richtig sortiert
-behandelt.  
-\end{enumerate} 
-\subsection*{Aufgabe 2}
-\begin{enumerate}[a)]
-
-  \item Eine Variable ist benannter Beh\"alter f\"ur Werte eines bestimmten
-    Datentyps. Den in einer Variable gespeicherten Wert kann man \"andern.
-    Werte k\"onnen als Bin\"arzahlen dargestellt werden. Werte sind fest. Mit
-    Werten kann man Operationen durchf\"uhren und Werte k\"onnen gespeichert
-    werden.
-
-  \item Eine Zuweisung ist eine Operation, bei der einer Variable ein Wert
-    zugeordnet wird. Dabei kann der Variable auch ein Ausdruck, der zun\"achst
-    berechnet werden muss zugewiesen werden. Ein Beispiel w\"are:
-
-    \begin{lstlisting}
-    x=x+1
-    \end{lstlisting}
-
-\end{enumerate}
-\subsection*{Aufgabe 3}
-\begin{enumerate}[a)]
-  \item Es hilft, eine Vorstellung f\"ur das Problem zu gewinnen Man ben\"otigt
-    sie um im Nachfolgenden Stichprobenartige Tests der L\"osung des Problems
-    durchzuf\"uhren.
-
-  \item Es widerspricht dem DRY (''Don't Repeat yourself``) Paradigma.
-
-  \item Das don't Repeat yourself Paradigma ist sehr interessant, auch das es
-auf Definition von Variablen angewendet werden kann.  
-
+  \item Wir halten das Konzept von Intervallen in Programmiersprachen f\"ur
+    interessant. Es ist h\"aufig ein Problem herauszufinden, ob man \"uber Intervalle,
+    welche man benutzt, offen iterieren soll oder zum Beispiel den letzten
+    Wert noch mit einschlie\ss{}t. Dies hat uns h\"aufig Probleme bereitet
+    wenn Grenzf\"alle korrekt berechnet werden sollen.
 \end{enumerate}
 
 \end{document}

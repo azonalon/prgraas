@@ -6,7 +6,9 @@ Run: ./wages
 #include "base.h"
  
 /*
-Design a function that computes weekly wages with overtime from hours worked. The hourly rate is 10 €/hour. Regular working time is 40 hours/week. Overtime is paid 150% of the normal rate of pay.
+Design a function that computes weekly wages with overtime from hours worked.
+The hourly rate is 10 €/hour. Regular working time is 40 hours/week. Overtime
+is paid 150% of the normal rate of pay.
 */
  
 typedef int Hours; // represents hours worked
@@ -28,7 +30,8 @@ void hours_to_wages_test() {
 Cents hours_to_wages(Hours hours) {
     if (hours <= 40) {
         return hours * 1000;
-    } else {
+    } 
+    else {
         return 40 * 1000 + (hours - 40) * 1500;
     }
 }

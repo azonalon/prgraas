@@ -33,7 +33,8 @@ Cents hours_to_wages(Hours hours) {
         return 40 * 1000 + (hours - 40) * 1500;
     }
 }
- 
+
+
 int main(void) {
     hours_to_wages_test();
     return 0;
