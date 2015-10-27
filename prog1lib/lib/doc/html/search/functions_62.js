@@ -62,5 +62,6 @@ var searchData=
   ['base_5fcount_5fsuccess',['base_count_success',['../base_8h.html#a4dbb11c2c4fc313d770ca681ce8552a7',1,'base.h']]],
   ['base_5ffree',['base_free',['../base_8h.html#aefea716065f01af89118d4db496fb1db',1,'base.h']]],
   ['base_5finit',['base_init',['../base_8h.html#a7fb819521b1ab5fc7644ad216fe7b465',1,'base.h']]],
-  ['base_5fmalloc',['base_malloc',['../base_8h.html#a4694667691a5d2d8c178c6c981926d83',1,'base.h']]]
+  ['base_5fmalloc',['base_malloc',['../base_8h.html#a4694667691a5d2d8c178c6c981926d83',1,'base.h']]],
+  ['base_5fset_5fmemory_5fcheck',['base_set_memory_check',['../base_8h.html#af0f0632b70997905d3b0aaf794bfcffc',1,'base.h']]]
 ];

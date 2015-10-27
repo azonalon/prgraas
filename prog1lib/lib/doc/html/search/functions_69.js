@@ -1,5 +1,8 @@
 var searchData=
 [
+  ['i_5finput',['i_input',['../base_8h.html#abac69ecb9daaf8c7003c31830e2e29bc',1,'base.h']]],
+  ['i_5fof_5fs',['i_of_s',['../base_8h.html#a43ea19ebeb1db0731831f3c3597c1601',1,'base.h']]],
+  ['i_5frnd',['i_rnd',['../base_8h.html#ab6da123dc2f26fea5125554dccc42e24',1,'base.h']]],
   ['ia_5fcheck_5fexpect_5ffile_5fline',['ia_check_expect_file_line',['../int__array_8h.html#ac24f3a496f825b7b26086a30551dc7f3',1,'int_array.h']]],
   ['ia_5fchoose',['ia_choose',['../int__array_8h.html#a2ff75db05494d28fd115ba044bc03c21',1,'int_array.h']]],
   ['ia_5fchoose_5fstate',['ia_choose_state',['../int__array_8h.html#af0910036cbf70525b4b507ee1f09c82e',1,'int_array.h']]],
@@ -99,6 +102,5 @@ var searchData=
   ['int_5fdiv',['int_div',['../int__array_8h.html#a06b5ffde69aa231ea7fb0555620715d5',1,'int_div(int x, int y, int index):&#160;int_array.h'],['../int__list_8h.html#a06b5ffde69aa231ea7fb0555620715d5',1,'int_div(int x, int y, int index):&#160;int_list.h']]],
   ['int_5fminus',['int_minus',['../int__array_8h.html#a689fc5984cb0348201e715d72c9c6e2d',1,'int_minus(int x, int y, int index):&#160;int_array.h'],['../int__list_8h.html#a689fc5984cb0348201e715d72c9c6e2d',1,'int_minus(int x, int y, int index):&#160;int_list.h']]],
   ['int_5fmult',['int_mult',['../int__array_8h.html#a99fbc41d3f8169ce5d9a26a3f22d14ed',1,'int_mult(int x, int y, int index):&#160;int_array.h'],['../int__list_8h.html#a99fbc41d3f8169ce5d9a26a3f22d14ed',1,'int_mult(int x, int y, int index):&#160;int_list.h']]],
-  ['int_5fplus',['int_plus',['../int__array_8h.html#a4e79fe413c31ad8c65e4e605d453c5fc',1,'int_plus(int x, int y, int index):&#160;int_array.h'],['../int__list_8h.html#a4e79fe413c31ad8c65e4e605d453c5fc',1,'int_plus(int x, int y, int index):&#160;int_list.h']]],
-  ['int_5frnd',['int_rnd',['../base_8h.html#a10cf970eee264a08364d951c2fd24d51',1,'base.h']]]
+  ['int_5fplus',['int_plus',['../int__array_8h.html#a4e79fe413c31ad8c65e4e605d453c5fc',1,'int_plus(int x, int y, int index):&#160;int_array.h'],['../int__list_8h.html#a4e79fe413c31ad8c65e4e605d453c5fc',1,'int_plus(int x, int y, int index):&#160;int_list.h']]]
 ];

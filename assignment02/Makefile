@@ -3,7 +3,6 @@ LINKER = gcc
 CFLAGS = -std=c99 -Wall -Werror -Wpointer-arith -Wfatal-errors
 DEBUG = -g
 
-
 # disable default suffixes
 .SUFFIXES:
 

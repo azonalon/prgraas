@@ -1074,7 +1074,7 @@ bool sa_check_expect_file_line(const char *file, const char *function, int line,
 	}
 	if (a->s != sizeof(String)) {
 		printf("%s, line %d: Actual element size %d "
-			"differs from expected element size %lu\n", file, line, a->s, sizeof(String));
+			"differs from expected element size %lu\n", file, line, a->s, (unsigned long)sizeof(String));
 		return false;
 	}
 	if (a->n < 0) {

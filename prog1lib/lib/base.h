@@ -97,7 +97,7 @@ last line
 @code{.c}
 List list = sl_create();
 for (int i = 0; i < 100; i++){
-	double d = double_rnd(10);
+	double d = d_rnd(10);
 	sl_append(list, s_of_double(d));
 }
 String s = s_join(list, '\n');
@@ -144,6 +144,13 @@ Initialization function should be the first statement in main.
 Enables memory allocation tracking.
 */
 void base_init(void);
+
+/** 	
+Switch on or off memory checking at termination of the programx.
+@param[in] do_check if \c true, then memory is checked
+*/
+void base_set_memory_check(bool do_check);
+
 
 
 ////////////////////////////////////////////////////////////////////////////
@@ -417,6 +424,16 @@ free(p) in client code will be @c base_free
 
 
 ////////////////////////////////////////////////////////////////////////////
+// Conversion
+
+/** Convert a String to an integer. */
+int i_of_s(String s);
+
+/** Convert a String to a double. */
+double d_of_s(String s);
+
+
+////////////////////////////////////////////////////////////////////////////
 // Output
 
 /** Print an integer. */
@@ -498,7 +515,7 @@ Read at most n-1 characters into an existing buffer.
 Stop reading if newline or end-of-file is reached.
 @param[in,out] line buffer to write into (size of buffer at least n bytes)
 @param[in] n maximum number of bytes to read
-@see s_get_line
+@see s_input
 */
 void get_line(char *line, int n);
 
@@ -509,8 +526,17 @@ Stop reading if newline or end-of-file is reached.
 @return newly allocated String with bytes read, length is according to number of bytes actually read
 @see get_line
 */
-String s_get_line(int n);
+String s_input(int n);
 
+/**
+Read an integer from standard input. The integer is terminated by a line break.
+*/
+int i_input(void);
+
+/**
+Read a double from standard input. The double is terminated by a line break.
+*/
+double d_input(void);
 
 
 ////////////////////////////////////////////////////////////////////////////
@@ -552,7 +578,7 @@ Return a random int between in the interval [0,i).
 @param[in] i upper boundary (exclusive)
 @return an integer value between 0 (inclusive) and i (exclusive)
 */
-int int_rnd(int i);
+int i_rnd(int i);
 
 /**
 Return a random double between in the interval [0,i).
@@ -560,7 +586,7 @@ Return a random double between in the interval [0,i).
 @param[in] i upper boundary (exclusive)
 @return a double value between 0 (inclusive) and i (exclusive)
 */
-double double_rnd(double i);
+double d_rnd(double i);
 
 
 

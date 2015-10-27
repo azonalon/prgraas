@@ -27,7 +27,7 @@ TruncatedString truncate_to_8(String input) {
     if (s_length(input) <= 8) {
         return input;
     } else {
-        return s_sub(input, 1, 8);
+        return s_sub(input, 0, 8);
     }
 }
 

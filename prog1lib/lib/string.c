@@ -182,7 +182,7 @@ bool s_equals_ignore_case(String s, String t) {
 bool s_contains(String s, String part) {
 	assert_argument_not_null(s);
 	assert_argument_not_null(part);
-	return strstr(s, part) == NULL;
+	return strstr(s, part) != NULL;
 }
 
 bool s_starts_with(String s, String start) {

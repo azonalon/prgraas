@@ -1,6 +1,9 @@
 var searchData=
 [
   ['i',['i',['../struct_int_pair.html#a82f91f0e0b2011427819740e7f3ec9b8',1,'IntPair::i()'],['../struct_int_triple.html#a73875505b38c864d0345670da049981c',1,'IntTriple::i()'],['../struct_double_pair.html#a412fb39fe39c8e2e971595d1005fbab8',1,'DoublePair::i()'],['../struct_double_triple.html#a34e0a1d34f786d6c817673fdfa055ba0',1,'DoubleTriple::i()']]],
+  ['i_5finput',['i_input',['../base_8h.html#abac69ecb9daaf8c7003c31830e2e29bc',1,'base.h']]],
+  ['i_5fof_5fs',['i_of_s',['../base_8h.html#a43ea19ebeb1db0731831f3c3597c1601',1,'base.h']]],
+  ['i_5frnd',['i_rnd',['../base_8h.html#ab6da123dc2f26fea5125554dccc42e24',1,'base.h']]],
   ['ia_5fassert_5felement_5fsize',['ia_assert_element_size',['../int__array_8h.html#ac85c5ecf6f171e9eb2255d54e8c2b6f8',1,'int_array.h']]],
   ['ia_5fcheck_5fexpect',['ia_check_expect',['../int__array_8h.html#a90c55bff09d5c7abe473e4c0aaee6c1b',1,'int_array.h']]],
   ['ia_5fcheck_5fexpect_5ffile_5fline',['ia_check_expect_file_line',['../int__array_8h.html#ac24f3a496f825b7b26086a30551dc7f3',1,'int_array.h']]],
@@ -107,7 +110,6 @@ var searchData=
   ['int_5fminus',['int_minus',['../int__array_8h.html#a689fc5984cb0348201e715d72c9c6e2d',1,'int_minus(int x, int y, int index):&#160;int_array.h'],['../int__list_8h.html#a689fc5984cb0348201e715d72c9c6e2d',1,'int_minus(int x, int y, int index):&#160;int_list.h']]],
   ['int_5fmult',['int_mult',['../int__array_8h.html#a99fbc41d3f8169ce5d9a26a3f22d14ed',1,'int_mult(int x, int y, int index):&#160;int_array.h'],['../int__list_8h.html#a99fbc41d3f8169ce5d9a26a3f22d14ed',1,'int_mult(int x, int y, int index):&#160;int_list.h']]],
   ['int_5fplus',['int_plus',['../int__array_8h.html#a4e79fe413c31ad8c65e4e605d453c5fc',1,'int_plus(int x, int y, int index):&#160;int_array.h'],['../int__list_8h.html#a4e79fe413c31ad8c65e4e605d453c5fc',1,'int_plus(int x, int y, int index):&#160;int_list.h']]],
-  ['int_5frnd',['int_rnd',['../base_8h.html#a10cf970eee264a08364d951c2fd24d51',1,'base.h']]],
   ['intanytobyte',['IntAnyToByte',['../basedefs_8h.html#a13127719ac28a8c44b39f6f6dd24e7f9',1,'basedefs.h']]],
   ['intbytetobyte',['IntByteToByte',['../basedefs_8h.html#a70f0e5222124d9cf0e5967e872b28a7f',1,'basedefs.h']]],
   ['intdoubletodouble',['IntDoubleToDouble',['../basedefs_8h.html#a7c42ac4581c9d7c62243429d64289227',1,'basedefs.h']]],
