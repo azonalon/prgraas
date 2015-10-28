@@ -1037,7 +1037,7 @@ bool pa_check_expect_file_line(const char *file, const char *function, int line,
 	}
 	if (a->s != sizeof(Any)) {
 		printf("%s, line %d: Actual element size %d "
-			"differs from expected element size %lu\n", file, line, a->s, sizeof(Any));
+			"differs from expected element size %lu\n", file, line, a->s, (unsigned long)sizeof(Any));
 		return false;
 	}
 	if (a->n < 0) {

@@ -1,40 +1,44 @@
 /*
-Compile: make wages
-Run: ./wages
+Compile: make truncate_to_n
+Run: truncate_to_n
 */
- 
+
 #include "base.h"
 #include "string.h"
-
+ 
 /*
-Design a function that computes weekly wages with overtime from hours worked. The hourly rate is 10 €/hour. Regular working time is 40 hours/week. Overtime is paid 150% of the normal rate of pay.
+Design a function that cuts strings to length n and truncates the rest of the
+string.
 */
  
-typedef int Hours; // represents hours worked
-typedef int Cents; // represents wage in cents
+typedef int Length;             // the length of the output
+typedef String TruncatedString; // the output of the function
  
-// Hours -> Cents
-Cents hours_to_wages(Hours hours);
+// (String, int) -> TruncatedString
+TruncatedString truncate_to_n(String input, Length n);
  
-void hours_to_wages_test() {
-    check_expect_i(hours_to_wages(0), 0);          // line 20
-    check_expect_i(hours_to_wages(20), 20 * 1000); // line 21
-    check_expect_i(hours_to_wages(39), 39 * 1000); // line 22
-    check_expect_i(hours_to_wages(40), 40 * 1000); // line 23
-    check_expect_i(hours_to_wages(41), 40 * 1000 + 1 * 1500);
-    check_expect_i(hours_to_wages(45), 40 * 1000 + 5 * 1500);
+void truncate_to_n_test() {
+    check_expect_s(truncate_to_n("a", 2), "a");              // no truncation
+    check_expect_s(truncate_to_n("ab", 2), "ab");            // no truncation
+    check_expect_s(truncate_to_n("abc", 2), "ab");           // truncation
+    check_expect_s(truncate_to_n("bla", 6), "bla");          // no truncation
+    check_expect_s(truncate_to_n("blabla", 6), "blabla");    // no truncation
+    check_expect_s(truncate_to_n("blablabla", 6), "blabla"); // truncation
 }
  
-// Compute the wage in cents given the number of hours worked.
-Cents hours_to_wages(Hours hours) {
-    if (hours <= 40) {
-        return hours * 1000;
+/* Return a truncated string of length n
+given a string of arbitrary length and n.
+*/
+TruncatedString truncate_to_n(String input, Length n) {
+    if (s_length(input) <= n) {
+        return input;
     } else {
-        return 40 * 1000 + (hours - 40) * 1500;
+        return s_sub(input, 0, n);
     }
 }
- 
+
+
 int main(void) {
-    hours_to_wages_test();
+    truncate_to_n_test();
     return 0;
 }

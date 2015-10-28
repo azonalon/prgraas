@@ -1,40 +1,47 @@
 /*
-Compile: make wages
-Run: ./wages
+Compile: make truncate_to_n_dots
+Run: truncate_to_n_dots
 */
- 
+
 #include "base.h"
 #include "string.h"
-
+ 
 /*
-Design a function that computes weekly wages with overtime from hours worked. The hourly rate is 10 €/hour. Regular working time is 40 hours/week. Overtime is paid 150% of the normal rate of pay.
+Design a function that cuts strings to length n and truncates the rest of the
+string. If a part of the string is truncated the last three characters should
+be replaced by "..." (only if the length of the string is <= 3).
 */
  
-typedef int Hours; // represents hours worked
-typedef int Cents; // represents wage in cents
+typedef int Length;             // the length of the output
+typedef String TruncatedString; // the output of the function
  
-// Hours -> Cents
-Cents hours_to_wages(Hours hours);
+// (String, int) -> TruncatedString
+TruncatedString truncate_to_n_dots(String input, Length n);
  
-void hours_to_wages_test() {
-    check_expect_i(hours_to_wages(0), 0);          // line 20
-    check_expect_i(hours_to_wages(20), 20 * 1000); // line 21
-    check_expect_i(hours_to_wages(39), 39 * 1000); // line 22
-    check_expect_i(hours_to_wages(40), 40 * 1000); // line 23
-    check_expect_i(hours_to_wages(41), 40 * 1000 + 1 * 1500);
-    check_expect_i(hours_to_wages(45), 40 * 1000 + 5 * 1500);
+void truncate_to_n_dots_test() {
+    check_expect_s(truncate_to_n_dots("hu", 3), "hu");            // no truncation
+    check_expect_s(truncate_to_n_dots("huh", 3), "huh");          // no truncation
+    check_expect_s(truncate_to_n_dots("huhu", 3), "huh");         // truncation
+    check_expect_s(truncate_to_n_dots("bla", 6), "bla");          // no truncation
+    check_expect_s(truncate_to_n_dots("blabla", 6), "blabla");    // no truncation
+    check_expect_s(truncate_to_n_dots("blablabla", 6), "bla..."); // truncation
 }
  
-// Compute the wage in cents given the number of hours worked.
-Cents hours_to_wages(Hours hours) {
-    if (hours <= 40) {
-        return hours * 1000;
+/* Return a string of length n consisting of the first characters and "..." if
+a part was trauncated given a string of arbitrary length and n.
+*/
+TruncatedString truncate_to_n_dots(String input, Length n) {
+    if (s_length(input) <= n) {
+        return input;
+    } else if(n <= 3) {
+        return s_sub(input, 0, n);
     } else {
-        return 40 * 1000 + (hours - 40) * 1500;
+        return s_concat(s_sub(input, 0, n-3), "...");
     }
 }
- 
+
+
 int main(void) {
-    hours_to_wages_test();
+    truncate_to_n_dots_test();
     return 0;
 }

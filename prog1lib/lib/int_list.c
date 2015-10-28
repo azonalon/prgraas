@@ -921,7 +921,7 @@ int il_square(int value, int index) {
 }
 
 int il_rnd(int index, int maximum) {
-	return int_rnd(maximum); // index not used
+	return i_rnd(maximum); // index not used
 }
 
 int il_times(int value, int index, int x) {

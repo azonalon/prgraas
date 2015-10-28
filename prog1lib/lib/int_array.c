@@ -906,7 +906,7 @@ int ia_square(int value, int index) {
 }
 
 int ia_rnd(int index, int maximum) {
-	return int_rnd(maximum); // index not used
+	return i_rnd(maximum); // index not used
 }
 
 int ia_times(int value, int index, int x) {
@@ -1284,7 +1284,7 @@ bool ia_check_expect_file_line(const char *file, const char *function, int line,
 	}
 	if (a->s != sizeof(int)) {
 		printf("%s, line %d: Actual element size %d "
-			"differs from expected element size %lu\n", file, line, a->s, sizeof(int));
+			"differs from expected element size %lu\n", file, line, a->s, (unsigned long)sizeof(int));
 		return false;
 	}
 	if (a->n < 0) {

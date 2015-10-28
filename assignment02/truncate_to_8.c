@@ -1,41 +1,38 @@
 /*
-Compile: make wages
-Run: ./wages
+Compile: make truncate_to_8
+Run: truncate_to_8
 */
- 
+
 #include "base.h"
 #include "string.h"
-
+ 
 /*
-Design a function that computes weekly wages with overtime from hours worked. The hourly rate is 10 €/hour. Regular working time is 40 hours/week. Overtime is paid 150% of the normal rate of pay.
+Design a function that cuts strings to length 8 and truncates the rest of the
+string.
 */
  
-typedef int Hours; // represents hours worked
-typedef int Cents; // represents wage in cents
+typedef String TruncatedString; // the output of the function
  
-// Hours -> Cents
-Cents hours_to_wages(Hours hours);
+// String -> TruncatedString
+TruncatedString truncate_to_8(String input);
  
-void hours_to_wages_test() {
-    check_expect_i(hours_to_wages(0), 0);          // line 20
-    check_expect_i(hours_to_wages(20), 20 * 1000); // line 21
-    check_expect_i(hours_to_wages(39), 39 * 1000); // line 22
-    check_expect_i(hours_to_wages(40), 40 * 1000); // line 23
-    check_expect_i(hours_to_wages(41), 40 * 1000 + 1 * 1500);
-    check_expect_i(hours_to_wages(45), 40 * 1000 + 5 * 1500);
+void truncate_to_8_test() {
+    check_expect_s(truncate_to_8("bla"), "bla");            // no truncation
+    check_expect_s(truncate_to_8("blablabl"), "blablabl");  // no truncation
+    check_expect_s(truncate_to_8("blablabla"), "blablabl"); // truncation
 }
  
-// Compute the wage in cents given the number of hours worked.
-Cents hours_to_wages(Hours hours) {
-    if (hours <= 40) {
-        return hours * 1000;
+// Return a truncated string of length 8 given a string of arbitrary length.
+TruncatedString truncate_to_8(String input) {
+    if (s_length(input) <= 8) {
+        return input;
     } else {
-        return 40 * 1000 + (hours - 40) * 1500;
+        return s_sub(input, 0, 8);
     }
 }
 
 
 int main(void) {
-    hours_to_wages_test();
+    truncate_to_8_test();
     return 0;
 }

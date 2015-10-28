@@ -67,9 +67,15 @@ void base_free(Any p) {
 	free(p);
 }
 
-int base_atexit_registered = false;
+static bool base_atexit_registered = false;
 void base_atexit(void);
-	
+
+static bool do_memory_check = false;
+
+void base_set_memory_check(bool do_check) {
+	do_memory_check = do_check;
+}
+
 void base_init(void) {
 	if (!base_atexit_registered) {
 		atexit(base_atexit);
@@ -80,14 +86,14 @@ void base_init(void) {
 Any base_malloc(const char *file, const char *function, int line, size_t size) {
 	Any p = malloc(size);
 	if (p == NULL) {
-		printf("%s, line %d: malloc(%lu) returned NULL!\n", file, line, size);
+		printf("%s, line %d: malloc(%lu) returned NULL!\n", file, line, (unsigned long)size);
 		exit(EXIT_FAILURE);
 	}
-	// printf("%s, line %d: malloc(%lu) returned %lx\n", file, line, size, (unsigned long)p);
+	// printf("%s, line %d: malloc(%lu) returned %lx\n", file, line, (unsigned long)size, (unsigned long)p);
 
 	BaseAllocInfo *ai = malloc(sizeof(BaseAllocInfo));
 	if (ai == NULL) {
-		printf("%s, line %d: malloc(%lu) returned NULL!\n", file, line, size);
+		printf("%s, line %d: malloc(%lu) returned NULL!\n", file, line, (unsigned long)size);
 		exit(EXIT_FAILURE);
 	}
 	ai->p = p;
@@ -102,17 +108,17 @@ Any base_malloc(const char *file, const char *function, int line, size_t size) {
 }
 
 Any base_calloc(const char *file, const char *function, int line, size_t num, size_t size) {
-	// printf("%s, line %d: xcalloc(%lu, %lu)\n", file, line, num, size);
+	// printf("%s, line %d: xcalloc(%lu, %lu)\n", file, line, (unsigned long)num, (unsigned long)size);
 	Any p = calloc(num, size);
 	if (p == NULL) {
-		printf("%s, line %d: xcalloc(%lu, %lu) returned NULL!\n", file, line, num, size);
+		printf("%s, line %d: xcalloc(%lu, %lu) returned NULL!\n", file, line, (unsigned long)num, (unsigned long)size);
 		exit(EXIT_FAILURE);
 	}
-	// printf("%s, line %d: xcalloc(%lu, %lu) returned %lx\n", file, line, num, size, (unsigned long)p);
+	// printf("%s, line %d: xcalloc(%lu, %lu) returned %lx\n", file, line, (unsigned long)num, (unsigned long)size, (unsigned long)p);
 
 	BaseAllocInfo *ai = malloc(sizeof(BaseAllocInfo));
 	if (ai == NULL) {
-		printf("%s, line %d: malloc(%lu) returned NULL!\n", file, line, num * size);
+		printf("%s, line %d: malloc(%lu) returned NULL!\n", file, line, (unsigned long)num * (unsigned long)size);
 		exit(EXIT_FAILURE);
 	}
 	ai->p = p;
@@ -127,7 +133,7 @@ Any base_calloc(const char *file, const char *function, int line, size_t num, si
 	return p;	
 }
 
-void base_check_memory(void) {
+static void base_check_memory(void) {
 	// printsln("Checking for memory leaks:");
 	int n = 0;
 	size_t s = 0;
@@ -135,14 +141,14 @@ void base_check_memory(void) {
 	// @todo: group leaks by file, order by increasing line number, report each line number only once.
 	for (BaseAllocInfo *ai = base_alloc_info; ai != NULL; ai = ai->next) {
 		if (n < 5) { // only show the first ones explicitly
-			printf("%5lu bytes allocated in %s (%s at line %d) not freed\n", ai->size, ai->function, ai->file, ai->line);
+			printf("%5lu bytes allocated in %s (%s at line %d) not freed\n", (unsigned long)ai->size, ai->function, ai->file, ai->line);
 		}
 		n++;
 		s += ai->size;
 	}
 
 	if (n > 0) {
-		printf("%d memory leak%s, %lu bytes total\n", n, n == 1 ? "" : "s", s);
+		printf("%d memory leak%s, %lu bytes total\n", n, n == 1 ? "" : "s", (unsigned long)s);
 	} else {
 		// printf("No memory leaks.\n");
 	}
@@ -238,6 +244,18 @@ ListHead make_list_head(int s, ListNode *first, ListNode *last) {
 	return result;
 }
 
+
+
+////////////////////////////////////////////////////////////////////////////
+// Conversion
+
+int i_of_s(String s) {
+	return atoi(s);
+}
+
+double d_of_s(String s) {
+	return atof(s);
+}
 
 
 ////////////////////////////////////////////////////////////////////////////
@@ -406,7 +424,7 @@ void get_line(char *line, int n) {
 	// printf("'%s'\n", line);
 }
 
-String s_get_line(int n) {
+String s_input(int n) {
 	if (n <= 0) {
 		printf("%s: n = %d (has to be positive)\n", (String)__func__, n);
 		exit(EXIT_FAILURE);
@@ -417,10 +435,24 @@ String s_get_line(int n) {
 	if (n >= 1 && (line[n-1] == '\n' || line[n-1] == '\r')) line[n-1] = '\0'; 
 	if (n >= 2 && (line[n-2] == '\n' || line[n-2] == '\r')) line[n-2] = '\0'; 
 	n = strlen(line);
-	String s = malloc(n + 1);
+	String s = xmalloc(n + 1);
 	strcpy(s, line);
 	base_free(line);
 	return s;
+}
+
+int i_input(void) {
+	String s = s_input(100);
+	int i = i_of_s(s);
+	s_free(s);
+	return i;
+}
+
+double d_input(void) {
+	String s = s_input(100);
+	double d = d_of_s(s);
+	s_free(s);
+	return d;
 }
 
 
@@ -484,17 +516,17 @@ void write_file_data(String name, Byte *data, int n) {
 
 static bool srand_called = false;
 
-int int_rnd(int i) {
+int i_rnd(int i) {
 	if (!srand_called) {
-		srand (time(NULL));
+		srand(time(NULL) << 10);
 		srand_called = true;
 	}
 	return rand() % i;
 }
 
-double double_rnd(double i) {
+double d_rnd(double i) {
 	if (!srand_called) {
-		srand (time(NULL));
+		srand(time(NULL) << 10);
 		srand_called = true;
 	}
 	double r = (double) rand() / (double) RAND_MAX;
@@ -534,7 +566,9 @@ void base_atexit(void) {
 		}
 	}
 	
-	base_check_memory();
+	if (do_memory_check) {
+		base_check_memory();
+	}
 }
 
 #if 0
@@ -674,7 +708,7 @@ bool base_check_expect_ca(const char *file, const char *function, int line, Arra
 	}
 	if (a->s != sizeof(char)) {
 		printf("%s, line %d: Actual element size %d "
-			"differs from expected element size %lu\n", file, line, a->s, sizeof(char));
+			"differs from expected element size %lu\n", file, line, a->s, (unsigned long)sizeof(char));
 		return false;
 	}
 	if (a->n < 0) {
@@ -719,7 +753,7 @@ bool base_check_expect_boa(const char *file, const char *function, int line, Arr
 	}
 	if (a->s != sizeof(bool)) {
 		printf("%s, line %d: Actual element size %d "
-			"differs from expected element size %lu\n", file, line, a->s, sizeof(bool));
+			"differs from expected element size %lu\n", file, line, a->s, (unsigned long)sizeof(bool));
 		return false;
 	}
 	if (a->n < 0) {

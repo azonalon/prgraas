@@ -1365,7 +1365,7 @@ void sl_test_all(void) {
 	// Example 14: Write 100 random double values between 0 and 10 to a file.
 	List a18 = sl_create();
 	for (int i = 0; i < 100; i++){
-		double d = double_rnd(10);
+		double d = d_rnd(10);
 		sl_append(a18, s_of_double(d));
 	}
 	s = s_join(a18, '\n');

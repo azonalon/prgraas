@@ -1,5 +1,8 @@
 var searchData=
 [
+  ['d_5finput',['d_input',['../base_8h.html#a24b6bf41901fcb591e155a23cdd930dd',1,'base.h']]],
+  ['d_5fof_5fs',['d_of_s',['../base_8h.html#acb812a9a1d8081a5c91ba5f1fb287db7',1,'base.h']]],
+  ['d_5frnd',['d_rnd',['../base_8h.html#a29240c4323f95d257741f6f7bc24cad8',1,'base.h']]],
   ['da_5fassert_5felement_5fsize',['da_assert_element_size',['../double__array_8h.html#a6532b74bd7c6cc64c118f8b3b9dd22b2',1,'double_array.h']]],
   ['da_5fcheck_5fwithin',['da_check_within',['../double__array_8h.html#aad382caa93a0597dc7a6b147b8335c51',1,'double_array.h']]],
   ['da_5fcheck_5fwithin2',['da_check_within2',['../double__array_8h.html#a447d49a44f69d47f4d20d3e602cb1a5b',1,'double_array.h']]],
@@ -106,7 +109,6 @@ var searchData=
   ['double_5fminus',['double_minus',['../double__array_8h.html#aacfdcaaa5b7fc888f2dcc7edc1d50162',1,'double_minus(double x, double y, int index):&#160;double_array.h'],['../double__list_8h.html#aacfdcaaa5b7fc888f2dcc7edc1d50162',1,'double_minus(double x, double y, int index):&#160;double_list.h']]],
   ['double_5fmult',['double_mult',['../double__array_8h.html#a0a36c3557b06a57b9c42440aa233eda8',1,'double_mult(double x, double y, int index):&#160;double_array.h'],['../double__list_8h.html#a0a36c3557b06a57b9c42440aa233eda8',1,'double_mult(double x, double y, int index):&#160;double_list.h']]],
   ['double_5fplus',['double_plus',['../double__array_8h.html#a08a6c932a10d9f8d0a845d25db327b12',1,'double_plus(double x, double y, int index):&#160;double_array.h'],['../double__list_8h.html#a08a6c932a10d9f8d0a845d25db327b12',1,'double_plus(double x, double y, int index):&#160;double_list.h']]],
-  ['double_5frnd',['double_rnd',['../base_8h.html#a5722a2eb3941b6279db052e51b1f91e4',1,'base.h']]],
   ['doubledoubledoubletobool',['DoubleDoubleDoubleToBool',['../basedefs_8h.html#aba9fddda35874520a5beec8dcf13dadb',1,'basedefs.h']]],
   ['doubledoubledoubletodouble',['DoubleDoubleDoubleToDouble',['../basedefs_8h.html#ad844bfac5557a2fa246a75de3497d434',1,'basedefs.h']]],
   ['doubledoubleinttodouble',['DoubleDoubleIntToDouble',['../basedefs_8h.html#a4a1add6aa1baf266d81cd024a3c15c3a',1,'basedefs.h']]],

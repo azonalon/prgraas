@@ -905,7 +905,7 @@ static void a_shuffle_test(void) {
 void a_shuffle(Array array) {
 	Byte *tmp = xmalloc(array->s);
 	for (int i = array->n - 1; i > 0; i--) {
-		int r = int_rnd(i + 1); // random number between [0,i]
+		int r = i_rnd(i + 1); // random number between [0,i]
 		// swap indices i and r
 		memcpy(tmp, (Byte*)array->a + r * array->s, array->s);
 		memcpy((Byte*)array->a + r * array->s, (Byte*)array->a + i * array->s, array->s);
