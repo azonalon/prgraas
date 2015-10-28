@@ -13,10 +13,10 @@ be replaced by "..." (only if the length of the string is <= 3).
 */
  
 typedef int Length;             // the length of the output
-typedef String TruncatedString; // the output of the function
+typedef String String; // the output of the function
  
-// (String, int) -> TruncatedString
-TruncatedString truncate_to_n_dots(String input, Length n);
+// (String, int) -> String
+String truncate_to_n_dots(String input, Length n);
  
 void truncate_to_n_dots_test() {
     check_expect_s(truncate_to_n_dots("hu", 3), "hu");            // no truncation
@@ -30,7 +30,7 @@ void truncate_to_n_dots_test() {
 /* Return a string of length n consisting of the first characters and "..." if
 a part was trauncated given a string of arbitrary length and n.
 */
-TruncatedString truncate_to_n_dots(String input, Length n) {
+String truncate_to_n_dots(String input, Length n) {
     if (s_length(input) <= n) {
         return input;
     } else if(n <= 3) {
