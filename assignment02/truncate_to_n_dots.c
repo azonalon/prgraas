@@ -12,10 +12,9 @@ string. If a part of the string is truncated the last three characters should
 be replaced by "..." (only if the length of the string is <= 3).
 */
 
-typedef int Length;             // the length of the output
 
 // (String, int) -> String
-String truncate_to_n_dots(String input, Length n);
+String truncate_to_n_dots(String input, int length);
 
 void truncate_to_n_dots_test() {
     check_expect_s(truncate_to_n_dots("hu", 3), "hu");            // no truncation
@@ -29,13 +28,13 @@ void truncate_to_n_dots_test() {
 /* Return a string of length n consisting of the first characters and "..." if
 a part was trauncated given a string of arbitrary length and n.
 */
-String truncate_to_n_dots(String input, Length n) {
-    if (s_length(input) <= n) {
+String truncate_to_n_dots(String input, int length) {
+    if (s_length(input) <= length) {
         return input;
-    } else if(n <= 3) {
-        return s_sub(input, 0, n);
+    } else if(length <= 3) {
+        return s_sub(input, 0, length);
     } else {
-        return s_concat(s_sub(input, 0, n-3), "...");
+        return s_concat(s_sub(input, 0, length-3), "...");
     }
 }
 
