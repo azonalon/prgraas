@@ -14,7 +14,6 @@ string.
 String truncate_to_8(String);
 
 // String -> String
-/* TruncatedString truncate_to_8(String input); */
 
 void truncate_to_8_test() {
     check_expect_s(truncate_to_8("bla"), "bla");            // no truncation
