@@ -12,7 +12,6 @@ string.
 */
  
 typedef int Length;             // the length of the output
-/* typedef String String; // the output of the function */
  
 // (String, int) -> String
 String truncate_to_n(String input, Length n);

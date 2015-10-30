@@ -13,7 +13,6 @@ be replaced by "..." (only if the length of the string is <= 3).
 */
 
 typedef int Length;             // the length of the output
-typedef String String; // the output of the function
 
 // (String, int) -> String
 String truncate_to_n_dots(String input, Length n);
