@@ -81,28 +81,27 @@ enum Continent sail_with_switch(enum Continent starting_continent,
 {
     switch(starting_continent)
     {
-    case AFRICA:
+        case AFRICA:
             if (wd == NORTH)
                 return EUROPE;
-             else
+            else
                 return NOWHERE;
-   case AMERICA:
+        case AMERICA:
             if (wd == EAST)
                 return EUROPE;
             else
                 return NOWHERE;
-   case EUROPE:
+        case EUROPE:
             if (wd == WEST)
                 return AMERICA;
             else if (wd == SOUTH)
                 return AFRICA;
             else
                 return NOWHERE;
-   default:
+        default:
             return NOWHERE;
 
     }
-    return NOWHERE;
 }
 
 int main(void) {
