@@ -2,7 +2,7 @@
 Compile: make sail
 Run: ./sail
 */
- 
+
 #include "base.h"
 
 /*
@@ -74,6 +74,35 @@ enum Continent sail(enum Continent starting_continent, enum WindDiretion wd) {
     } else {
         return NOWHERE;
     }
+}
+
+enum Continent sail_with_switch(enum Continent starting_continent,
+                                enum WindDiretion wd)
+{
+    switch(starting_continent)
+    {
+    case AFRICA:
+            if (wd == NORTH)
+                return EUROPE;
+             else
+                return NOWHERE;
+   case AMERICA:
+            if (wd == EAST)
+                return EUROPE;
+            else
+                return NOWHERE;
+   case EUROPE:
+            if (wd == WEST)
+                return AMERICA;
+            else if (wd == SOUTH)
+                return AFRICA;
+            else
+                return NOWHERE;
+   default:
+            return NOWHERE;
+
+    }
+    return NOWHERE;
 }
 
 int main(void) {
