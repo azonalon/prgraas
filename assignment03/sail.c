@@ -87,11 +87,13 @@ enum Continent sail_with_switch(enum Continent starting_continent,
                 next_continent = EUROPE;
             else
                 next_continent = NOWHERE;
+            break;
         case AMERICA:
             if (wd == EAST)
                 next_continent = EUROPE;
             else
                 next_continent = NOWHERE;
+            break;
         case EUROPE:
             if (wd == WEST)
                 next_continent = AMERICA;
@@ -99,6 +101,7 @@ enum Continent sail_with_switch(enum Continent starting_continent,
                 next_continent = AFRICA;
             else
                 next_continent = NOWHERE;
+            break;
         default:
             next_continent = NOWHERE;
 
