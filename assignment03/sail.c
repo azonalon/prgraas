@@ -79,34 +79,32 @@ enum Continent sail(enum Continent starting_continent, enum WindDiretion wd) {
 enum Continent sail_with_switch(enum Continent starting_continent,
                                 enum WindDiretion wd)
 {
-    enum Continent next_continent;
     switch(starting_continent)
     {
         case AFRICA:
             if (wd == NORTH)
-                next_continent = EUROPE;
+                return EUROPE;
             else
-                next_continent = NOWHERE;
+                return NOWHERE;
             break;
         case AMERICA:
             if (wd == EAST)
-                next_continent = EUROPE;
+                return EUROPE;
             else
-                next_continent = NOWHERE;
+                return NOWHERE;
             break;
         case EUROPE:
             if (wd == WEST)
-                next_continent = AMERICA;
+                return AMERICA;
             else if (wd == SOUTH)
-                next_continent = AFRICA;
+                return AFRICA;
             else
-                next_continent = NOWHERE;
+                return NOWHERE;
             break;
         default:
-            next_continent = NOWHERE;
+            return NOWHERE;
 
     }
-    return next_continent;
 }
 
 int main(void) {
