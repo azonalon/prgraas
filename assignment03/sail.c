@@ -51,59 +51,33 @@ static void sail_test() {
 }
 
 enum Continent sail(enum Continent starting_continent, enum WindDiretion wd) {
-    if (starting_continent == AFRICA) {
-        if (wd == NORTH) {
-            return EUROPE;
-        } else {
-            return NOWHERE;
-        }
-    } else if (starting_continent == AMERICA) {
-        if (wd == EAST) {
-            return EUROPE;
-        } else {
-            return NOWHERE;
-        }
-    } else if (starting_continent == EUROPE) {
-        if (wd == WEST) {
-            return AMERICA;
-        } else if (wd == SOUTH) {
-            return AFRICA;
-        } else {
-            return NOWHERE;
-        }
-    } else {
-        return NOWHERE;
-    }
-}
-
-enum Continent sail_with_switch(enum Continent starting_continent,
-                                enum WindDiretion wd)
-{
-    switch(starting_continent)
-    {
+    switch (starting_continent) {
         case AFRICA:
-            if (wd == NORTH)
+            if (wd == NORTH) {
                 return EUROPE;
-            else
+            } else {
                 return NOWHERE;
+            }
             break;
         case AMERICA:
-            if (wd == EAST)
+            if (wd == EAST) {
                 return EUROPE;
-            else
+            } else {
                 return NOWHERE;
+            }
             break;
         case EUROPE:
-            if (wd == WEST)
+            if (wd == WEST) {
                 return AMERICA;
-            else if (wd == SOUTH)
+            } else if (wd == SOUTH) {
                 return AFRICA;
-            else
+            } else {
                 return NOWHERE;
+            }
             break;
         default:
             return NOWHERE;
-
+            break;
     }
 }
 
