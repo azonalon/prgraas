@@ -21,14 +21,31 @@
 \maketitle
 \subsection*{Aufgabe 1}
 \begin{enumerate}[a)]
-  \item Man muss jedes Feld der Ausgabe einzeln auf korrektheit \"uberpr\"ufen.
+  \item Man muss jedes Feld der Ausgabe einzeln auf Korrektheit \"uberpr\"ufen.
 
   \item Nein, derselbe name darf nicht in beiden Strukturen vorkommen, 
     da sie den gleichen Namespace besetzen. Man kann allerdings den
     anonymen Strukturen einen unterscheidbaren Namen geben um diese kollision
     zu vermeiden.
 
-  \item 
+  \item Eine Schleife kann immer durch eine Rekursion ersetzt werden. 
+    Betrachte dazu den folgenden Code:
+\begin{lstlisting}
+  
+void body() {
+    // execute stuff
+}
+
+void while_loop(bool cond) {
+    body();
+    if(cond)
+        while_loop(cond);
+    return;
+}
+\end{lstlisting}
+  \item
+    Wozu braucht man anonymous Structs oder Unions.
+    
 \end{enumerate} 
 
 \end{document}
