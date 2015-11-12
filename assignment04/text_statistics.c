@@ -7,7 +7,15 @@ Run: ./text_statistics
 #include "string.h"
 
 /*
-Entwickeln Sie eine Funktion zur Erstellung einer Text-Statistik. Eingabe der Funktion ist ein String beliebiger Länge. Ausgabe ist eine statistische Zusammenfassung des Strings, die folgende Komponenten enthält: Anzahl Zeichen insgesamt (inkl. Whitespace), Anzahl Buchstaben, Anzahl Wörter, Anzahl Sätze, Anzahl Zeilen. Whitespace (Leerraum) ist definiert als die Menge der Steuerzeichen Leerzeichen (' '), Tabulator ('\t'), Zeilenvorschub ('\n') und Wagenrücklauf ('\r'). Die Menge der im Eingabetext erlaubten Zeichen sind diejenigen mit einem ASCII-Code zwischen 32 (Leerzeichen) und 126 (Tilde) sowie Whitespace (also insbesondere sind keine Umlaute erlaubt).
+Entwickeln Sie eine Funktion zur Erstellung einer Text-Statistik. Eingabe der
+Funktion ist ein String beliebiger Länge. Ausgabe ist eine statistische
+Zusammenfassung des Strings, die folgende Komponenten enthält: Anzahl Zeichen
+insgesamt (inkl. Whitespace), Anzahl Buchstaben, Anzahl Wörter, Anzahl Sätze,
+Anzahl Zeilen. Whitespace (Leerraum) ist definiert als die Menge der
+Steuerzeichen Leerzeichen (' '), Tabulator ('\t'), Zeilenvorschub ('\n') und
+Wagenrücklauf ('\r'). Die Menge der im Eingabetext erlaubten Zeichen sind
+diejenigen mit einem ASCII-Code zwischen 32 (Leerzeichen) und 126 (Tilde) sowie
+Whitespace (also insbesondere sind keine Umlaute erlaubt).
 */
 
 /*
@@ -96,6 +104,23 @@ struct TextStatistic test_3_correct = {
                                        .sentences = -1,
                                        };
 
+String test_4 = "What happens, if I write...?";
+struct TextStatistic test_4_correct = {
+                                       .lines = 1,
+                                       .characters = 28,
+                                       .letters = 28 - 9,
+                                       .words = 5,
+                                       .sentences = 3,
+                                       };
+
+String test_5 = "I don't want to write a fifth test case.";
+struct TextStatistic test_5_correct = {
+                                       .lines = 1,
+                                       .characters = 40,
+                                       .letters = 40 - 10,
+                                       .words = 9,
+                                       .sentences = 1,
+                                       };
 
 // String -> struct TextStatistic
 // gives the number of letters, words, characters and lines.
@@ -117,10 +142,11 @@ void text_statistics_test(){
     check_expect_statistics(text_statistics(test_1), test_1_correct);
     check_expect_statistics(text_statistics(test_2), test_2_correct);
     check_expect_statistics(text_statistics(test_3), test_3_correct);
+    check_expect_statistics(text_statistics(test_4), test_4_correct);
+    check_expect_statistics(text_statistics(test_5), test_5_correct);
 }
 
-// Computes the distance from the given point
-// to the origin of the coordinate system.
+// gives the number of letters, words, characters and lines.
 struct TextStatistic text_statistics(String text) {
     struct TextStatistic s = {0, 1, 0, 1, 0};
     int i = 0;
