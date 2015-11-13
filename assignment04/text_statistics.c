@@ -147,7 +147,6 @@ struct TextStatistic text_statistics(String text) {
             return invalid_text_statistic();
             printf("%s\n", &c);
         }
-
         i++;
     }
     return s;

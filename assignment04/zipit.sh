@@ -1,6 +1,4 @@
 #!/bin/sh
-# zip_prefix=$(basename "$PWD")
-# zip_name='assignment02'
 zip_name=$(basename "$PWD")
 
 make clean
