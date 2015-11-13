@@ -23,9 +23,9 @@
 \begin{enumerate}[a)]
   \item Man muss jedes Feld der Ausgabe einzeln auf Korrektheit \"uberpr\"ufen.
 
-  \item Nein, derselbe name darf nicht in beiden Strukturen vorkommen, 
+  \item Nein, derselbe Name darf nicht in beiden Strukturen vorkommen, 
     da sie den gleichen Namespace besetzen. Man kann allerdings den
-    anonymen Strukturen einen unterscheidbaren Namen geben um diese kollision
+    anonymen Strukturen einen unterscheidbaren Namen geben um diese Kollision
     zu vermeiden.
 
   \item Eine Schleife kann immer durch eine Rekursion ersetzt werden. 
@@ -47,5 +47,27 @@ void while_loop(bool cond) {
     Wozu braucht man anonymous Structs oder Unions.
     
 \end{enumerate} 
+
+\subsection*{Aufgabe 4}
+In dem Programm gibt es fünf Fehler.
+
+Der erste Fehler ist, dass die \texttt{main}-Funktion groß geschrieben wurde.
+Das ist ein Syntax-Fehler und das Programm kompiliert nicht.
+
+Der zweite Fehler ist, dass bei dem String, der ausgegeben werden soll die
+Anführungszeichen fehlen. \texttt{printf} soll also nicht definierte Variablen
+ausgeben, auch das führt dazu, dass das Programm nicht kompiliert.
+
+In dem String befindet sich der Fehler, dass statt \texttt{$\backslash$n}
+\texttt{/n} geschrieben wurde. Dadurch wird statt einem Zeilenumbruch
+\texttt{/n} angezeigt. Dies ist allerdings kein Syntax-Fehler, das Programm
+kompiliert also trotzdem, es funktioniert nur nicht wie gewollt.
+
+Am Ende des Funktionsausrufs \texttt{printf} muss ein Semikolon, wie nach jeder
+Anweisung in C. Das fehlende Semikolon ist ein Syntaxfehler.
+
+Der letzte Fehler ist, dass die geschwungene Klammer nach der
+\texttt{main}-Funktion nicht wieder geschlossen wurde, auch hier kompiliert das
+Programm nicht.
 
 \end{document}
