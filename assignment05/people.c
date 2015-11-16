@@ -67,7 +67,11 @@ void print_statistics(struct Statistics s) {
 // d) ... compute_statistics...
 
 double mean(double total, int number_of_values) {
-    return total / number_of_values;
+    if(number_of_values != 0) {
+        return total / number_of_values;
+    } else {
+        return 0;
+    }
 }
 
 struct Statistics compute_statistics(String data) {
@@ -87,6 +91,7 @@ struct Statistics compute_statistics(String data) {
                 t.total_height_females += d_of_s(s_sub(data, i + 7, i + 11));
             }
         }
+        number_of_values++;
         i += 10;
     }
     s.mean_year = mean(t.total_years, number_of_values);
@@ -94,6 +99,7 @@ struct Statistics compute_statistics(String data) {
     s.females = t.total_females;
     s.mean_height_males = mean(t.total_height_males, number_of_values);
     s.mean_height_females = mean(t.total_height_females, number_of_values);
+    return s;
 }
 
 // e) header file...
