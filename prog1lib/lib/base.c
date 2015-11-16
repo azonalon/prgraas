@@ -429,13 +429,14 @@ String s_input(int n) {
 		printf("%s: n = %d (has to be positive)\n", (String)__func__, n);
 		exit(EXIT_FAILURE);
 	}
-	char *line = base_malloc(__FILE__, __func__, __LINE__, n * sizeof(char));
+	char *line = base_malloc(__FILE__, __func__, __LINE__, n);
+	*line = '\0';
 	fgets(line, n, stdin);
 	n = strlen(line);
 	if (n >= 1 && (line[n-1] == '\n' || line[n-1] == '\r')) line[n-1] = '\0'; 
 	if (n >= 2 && (line[n-2] == '\n' || line[n-2] == '\r')) line[n-2] = '\0'; 
 	n = strlen(line);
-	String s = xmalloc(n + 1);
+	String s = base_malloc(__FILE__, __func__, __LINE__, n + 1);
 	strcpy(s, line);
 	base_free(line);
 	return s;
@@ -470,7 +471,7 @@ String s_read_file(String name) {
 	long size = ftell(f);
 	rewind(f);
 	
-	char *s = base_malloc(__FILE__, __func__, __LINE__, size);
+	char *s = base_malloc(__FILE__, __func__, __LINE__, size + 1);
 	if (s == NULL) {
 		fprintf(stderr, "%s: Cannot allocate memory.\n", (String)__func__); 
 		exit(EXIT_FAILURE);
@@ -480,6 +481,7 @@ String s_read_file(String name) {
 		fprintf(stderr, "%s: Only read %ld of %ld bytes.\n", (String)__func__, sizeRead, size); 
 		exit(EXIT_FAILURE);
 	}
+	s[size] = '\0';
 	
 	fclose(f);
 	return s;
@@ -531,6 +533,10 @@ double d_rnd(double i) {
 	}
 	double r = (double) rand() / (double) RAND_MAX;
 	return i * r;	
+}
+
+bool b_rnd(void) {
+	return i_rnd(2) == 0;
 }
 
 

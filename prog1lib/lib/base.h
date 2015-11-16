@@ -588,6 +588,12 @@ Return a random double between in the interval [0,i).
 */
 double d_rnd(double i);
 
+/**
+Return a random Boolean between (true or false) with 50% probability.
+@return true or false
+*/
+bool b_rnd(void);
+
 
 
 ////////////////////////////////////////////////////////////////////////////

@@ -4,14 +4,14 @@ Download and Installation
 -------------------------
 
 Download the library with examples from the script:<br/>
-<a href="/files/prog1lib-0.3.zip">prog1lib-0.3.zip</a>
+<a href="/files/prog1lib-0.4.zip">prog1lib-0.4.zip</a>
 
 Extract the zip file, go to directory prog1lib/lib, make libprog1.a, go to directory prog1lib/script_examples, make celsius_to_fahrenheit (or any other example from the script). In more detail, assuming that you have opened the terminal (on Linux, Mac OS X) or installed MinGW (on Windows, including the ``bin'' class of msys-wget, msys-zip, msys-unzip), perform these steps:
 
 <code>
 cd<br/>
-wget http://hci.uni-hannover.de/files/prog1lib-0.3.zip<br/>
-unzip prog1lib-0.3.zip<br/>
+wget http://hci.uni-hannover.de/files/prog1lib-0.4.zip<br/>
+unzip prog1lib-0.4.zip<br/>
 cd prog1lib/lib<br/>
 make<br/>
 cd ../script_examples<br/>

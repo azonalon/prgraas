@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['b_5frnd',['b_rnd',['../base_8h.html#aae790869c7e2ee86b9a0fa6d9a04adf7',1,'base.h']]],
   ['ba_5fcheck_5fexpect_5ffile_5fline',['ba_check_expect_file_line',['../byte__array_8h.html#a0b40005b2feb1eae20ac8a673093ead3',1,'byte_array.h']]],
   ['ba_5fchoose',['ba_choose',['../byte__array_8h.html#aa2ab9c813a3636ca5cca3f232614bcc3',1,'byte_array.h']]],
   ['ba_5fchoose_5fstate',['ba_choose_state',['../byte__array_8h.html#a2cd700c138c96fd84cb32f319bb861f9',1,'byte_array.h']]],

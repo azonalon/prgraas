@@ -44,7 +44,7 @@ static void sales_tax_test() {
 
 // Round the given double value to whole Euros.
 int round_to_int(double d) {
-    return (int)round(d); // round from math.h
+    return round(d); // round from math.h
 }
 
 // Return the amount of tax for the given price.
@@ -132,7 +132,7 @@ static void sales_tax_test() {
 
 // Round the given double value to whole Euros.
 int round_to_int(double d) {
-    return (int)round(d); // round from math.h
+    return round(d); // round from math.h
 }
 
 int main(void) {
