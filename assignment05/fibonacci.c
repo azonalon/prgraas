@@ -2,8 +2,14 @@
 Compile: make fibonacci
 Run: ./fibonacci
 */
-
 #include "base.h"
+
+#define own_time_function(f) {\
+	clock_t t = clock();\
+	f;\
+	t = clock() - t;\
+	printf("%g ms", t * 1000.0 / CLOCKS_PER_SEC);\
+}
 
 // positive integers expected
 int fibonacci_recursive(int n);
@@ -57,8 +63,8 @@ void timing(void) {
     for(int i = 0; i <= 45; i += 5) {
         printi(i); printf("\t");
         printi(fibonacci_iterative(i)); printf("\t");
-        time_function(fibonacci_iterative(i)); printf("\t");
-        time_function(fibonacci_recursive(i)); printf("\n");
+        own_time_function(fibonacci_iterative(i)); printf("\t");
+        own_time_function(fibonacci_recursive(i)); printf("\n");
     }
 }
 /*
