@@ -13,54 +13,53 @@ void sum_even_cubes_rec_test(void);
 void sum_even_cubes_rec_2_test(void);
 
 void sum_even_cubes_test(void) {
-    check_within_d( sum_even_cubes(0), 0.0, EPSILON);
-    check_within_d( sum_even_cubes(1), 0.0, EPSILON);
-    check_within_d( sum_even_cubes(2), 8.0, EPSILON);
-    check_within_d( sum_even_cubes(23),
-                    (double)(0 + 2*2*2 + 4*4*4 + 6*6*6 + 8*8*8 +
+    check_expect_i( sum_even_cubes(0), 0);
+    check_expect_i( sum_even_cubes(1), 0);
+    check_expect_i( sum_even_cubes(2), 8);
+    check_expect_i( sum_even_cubes(23),
+                    0 + 2*2*2 + 4*4*4 + 6*6*6 + 8*8*8 +
                      10*10*10 + 12*12*12 + 14*14*14 +
                      16*16*16 + 18*18*18 + 20*20*20 +
-                     22*22*22)
-                    , EPSILON);
-    check_within_d( sum_even_cubes(18),
-                    (double)(0 + 2*2*2 + 4*4*4 + 6*6*6 + 8*8*8 +
+                     22*22*22);
+    check_expect_i( sum_even_cubes(18),
+                    0 + 2*2*2 + 4*4*4 + 6*6*6 + 8*8*8 +
                      10*10*10 + 12*12*12 + 14*14*14 +
-                     16*16*16 + 18*18*18)
-                    , EPSILON);
+                     16*16*16 + 18*18*18
+                    );
 }
 
 void sum_even_cubes_rec_test(void) {
-    check_within_d( sum_even_cubes_rec(0), 0.0, EPSILON);
-    check_within_d( sum_even_cubes_rec(1), 0.0, EPSILON);
-    check_within_d( sum_even_cubes_rec(2), 8.0, EPSILON);
-    check_within_d( sum_even_cubes_rec(23),
-                    (double)(0 + 2*2*2 + 4*4*4 + 6*6*6 + 8*8*8 +
+    check_expect_i( sum_even_cubes_rec(0), 0);
+    check_expect_i( sum_even_cubes_rec(1), 0);
+    check_expect_i( sum_even_cubes_rec(2), 8);
+    check_expect_i( sum_even_cubes_rec(23),
+                    0 + 2*2*2 + 4*4*4 + 6*6*6 + 8*8*8 +
                      10*10*10 + 12*12*12 + 14*14*14 +
                      16*16*16 + 18*18*18 + 20*20*20 +
-                     22*22*22)
-                    , EPSILON);
-    check_within_d( sum_even_cubes_rec(18),
-                    (double)(0 + 2*2*2 + 4*4*4 + 6*6*6 + 8*8*8 +
+                     22*22*22
+                     );
+    check_expect_i( sum_even_cubes_rec(18),
+                    0 + 2*2*2 + 4*4*4 + 6*6*6 + 8*8*8 +
                      10*10*10 + 12*12*12 + 14*14*14 +
-                     16*16*16 + 18*18*18)
-                    , EPSILON);
+                     16*16*16 + 18*18*18
+                    );
 }
 
 void sum_even_cubes_rec2_test(void) {
-    check_within_d( sum_even_cubes_rec2(0), 0.0, EPSILON);
-    check_within_d( sum_even_cubes_rec2(1), 0.0, EPSILON);
-    check_within_d( sum_even_cubes_rec2(2), 8.0, EPSILON);
-    check_within_d( sum_even_cubes_rec2(23),
-                    (double)(0 + 2*2*2 + 4*4*4 + 6*6*6 + 8*8*8 +
+    check_expect_i( sum_even_cubes_rec2(0), 0.0);
+    check_expect_i( sum_even_cubes_rec2(1), 0.0);
+    check_expect_i( sum_even_cubes_rec2(2), 8.0);
+    check_expect_i( sum_even_cubes_rec2(23),
+                    0 + 2*2*2 + 4*4*4 + 6*6*6 + 8*8*8 +
                      10*10*10 + 12*12*12 + 14*14*14 +
                      16*16*16 + 18*18*18 + 20*20*20 +
-                     22*22*22)
-                    , EPSILON);
-    check_within_d( sum_even_cubes_rec2(18),
-                    (double)(0 + 2*2*2 + 4*4*4 + 6*6*6 + 8*8*8 +
+                     22*22*22
+                    );
+    check_expect_i( sum_even_cubes_rec2(18),
+                    0 + 2*2*2 + 4*4*4 + 6*6*6 + 8*8*8 +
                      10*10*10 + 12*12*12 + 14*14*14 +
-                     16*16*16 + 18*18*18)
-                    , EPSILON);
+                     16*16*16 + 18*18*18
+                    );
 }
 
 int sum_even_cubes(int n) {
