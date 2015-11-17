@@ -11,6 +11,9 @@ Run: ./fibonacci
 	printf("%g ms", t * 1000.0 / CLOCKS_PER_SEC);\
 }
 
+const int AnswerToEverything = 42;
+#define ANSWER_TO_EVERYTHING 42
+
 // positive integers expected
 int fibonacci_recursive(int n);
 
@@ -58,8 +61,7 @@ int fibonacci_iterative(int n) {
     return fib;
 }
 
-void timing(void) {
-	printf("i\tfib(i)\ttime_iter [ms]\ttime_rec [ms]\n");
+void timing(void) { printf("i\tfib(i)\ttime_iter [ms]\ttime_rec [ms]\n");
     for(int i = 0; i <= 45; i += 5) {
         printi(i); printf("\t");
         printi(fibonacci_iterative(i)); printf("\t");
