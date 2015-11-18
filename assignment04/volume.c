@@ -120,7 +120,7 @@ double volume(struct Shape s) {
             return PI * s.cylinder.r * s.cylinder.r * s.cylinder.z;
             break;
         case TBall:
-            return 4.0 / 3.0 * PI * s.ball.r * s.ball.r * s.ball.r;
+            return 4 / 3 * PI * s.ball.r * s.ball.r * s.ball.r;
             break;
         default:
             printf("ERROR: invalid shape");
