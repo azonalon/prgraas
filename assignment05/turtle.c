@@ -93,11 +93,11 @@ void parse_command(String command) {
 		int movement = -i_input();
 		move_turtle(movement);
 	} else if(s_equals(command, "LEFT")) {
-		int angle = -i_input();
-		turtle_dir = angle;
+		int angle = i_input();
+		turtle_dir -= angle;
 	} else if(s_equals(command, "RIGHT")) {
 		int angle = i_input();
-		turtle_dir = angle;
+		turtle_dir += angle;
 	} else {
 		printf("Unknown command: %s\n", command);
 	}
