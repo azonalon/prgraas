@@ -18,4 +18,4 @@ clean:
 	rm -f *.o
 	rm -rf *.dSYM
 	rm -f *.exe
-	rm .DS_Store
+	rm -f .DS_Store
