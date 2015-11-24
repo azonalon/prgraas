@@ -2,7 +2,7 @@
 Compile: make image
 Run: ./image
 */
- 
+
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 #define STB_IMAGE_WRITE_IMPLEMENTATION
@@ -15,8 +15,15 @@ Run: ./image
 #include "byte_array.h"
 
 /*
-A grayscale image is represented by its pixel data, its width, and its height. Each pixel is represented as a single byte. Byte value 0 represents black. Byte value 127 represents a medium gray. Byte value 0xff = 255 represents white. The uppermost pixel row is stored left-to-right at array indices [0, width). The second pixel row is stored at indices [width, 2 * width). And so on. The whole image consists of width * height pixels, which is also the length of the Byte-Array.
+A grayscale image is represented by its pixel data, its width, and its height.
+Each pixel is represented as a single byte. Byte value 0 represents black. Byte
+value 127 represents a medium gray. Byte value 0xff = 255 represents white. The
+uppermost pixel row is stored left-to-right at array indices [0, width). The
+second pixel row is stored at indices [width, 2 * width). And so on. The whole
+image consists of width * height pixels, which is also the length of the
+Byte-Array.
 */
+
 struct Image {
 	Array pixels; // Byte-Array
 	int width; // in pixels
@@ -25,6 +32,12 @@ struct Image {
 typedef struct Image Image;
 
 Image make_image(Array pixels, int width, int height) {
+	Image i = { pixels, width, height };
+	return i;
+}
+
+Image make_image_with_new_array(int width, int height) {
+    Array pixels = ba_create(width * height, 0);
 	Image i = { pixels, width, height };
 	return i;
 }
@@ -53,14 +66,48 @@ Save the image in png format. If it exists, the output file will be overwritten.
 void save_image(String file, Image image) {
 	stbi_write_png(file, image.width, image.height, 1, image.pixels->a, image.width);
 }
+// Helper Functions
+
+Byte image_get_pixel(Image image, int irow, int icolumn) {
+    assert(irow < image.height);
+    assert(icolumn < image.width);
+    return ba_get(image.pixels, image.width * irow + icolumn);
+}
+
+void image_set_pixel(Image image, int irow, int icolumn, Byte pixel) {
+    assert(irow < image.height);
+    assert(icolumn < image.width);
+    ba_set(image.pixels, image.width * irow + icolumn, pixel);
+}
+
+void image_swap_pixel(Image image,
+                      int irow1, int icol1,
+                      int irow2, int icol2
+                     ) {
+
+    Byte pixel1 = image_get_pixel(image, irow1, icol1);
+    Byte pixel2 = image_get_pixel(image, irow2, icol2);
+
+    image_set_pixel(image, irow1, icol1, pixel2);
+    image_set_pixel(image, irow2, icol2, pixel1);
+}
 
 /*
-Mirror the image horizontally, i.e., 
+Mirror the image horizontally, i.e.,
 :-) becomes (-:
 */
 Image mirror_horizontally(Image image) {
 	// todo: replace by your implementation
-	return make_image(a_copy(image.pixels), image.width, image.height);
+    Array mirrored_bytes = a_copy(image.pixels);
+    Image mirrored = make_image(mirrored_bytes, image.width, image.height);
+
+    for(int row = 0; row < mirrored.height; row++) {
+        for(int column = 0; column < mirrored.width/2; column++) {
+            image_swap_pixel(mirrored, row, column,
+                             row, mirrored.width - column - 1);
+        }
+    }
+	return mirrored;
 }
 
 /*
@@ -74,7 +121,14 @@ The function removes every second row and every second column.
 */
 Image scale_half(Image image) {
 	// todo: replace by your implementation
-	return make_image(a_copy(image.pixels), image.width, image.height);
+    Image scaled = make_image_with_new_array(image.width/2, image.height/2);
+    for(int row = 0; row < scaled.height; row++) {
+        for(int column = 0; column < scaled.width; column++) {
+            Byte pixel = image_get_pixel(image, row*2, column*2);
+            image_set_pixel(scaled, row, column, pixel);
+        }
+    }
+	return scaled;
 }
 
 /*
@@ -84,11 +138,22 @@ Crop image, i.e.,
  (   )   becomes (depending on the paremeters) ( o o )
   ( )
   (_)
-The function creates a subimage of the given width cw and height ch. The left top corner of the subimage in the original image is (cx, cy).
+The function creates a subimage of the given width cw and height ch. The left
+top corner of the subimage in the original image is (cx, cy).
 */
 Image crop(Image image, int cx, int cy, int cw, int ch) {
-	// todo: replace by your implementation
-	return make_image(a_copy(image.pixels), image.width, image.height);
+
+    Image cropped = make_image_with_new_array(cw, ch);
+    assert(cx + cw < image.width);
+    assert(cy + ch < image.height);
+
+    for(int row = 0; row < cropped.height; row++) {
+        for(int column = 0; column < cropped.width; column++) {
+            Byte pixel = image_get_pixel(image, cy + row, cx + column);
+            image_set_pixel(cropped, row, column, pixel);
+        }
+    }
+	return cropped;
 }
 
 /*
@@ -98,7 +163,19 @@ Insert an image into another image. The left top corner of the insertion positio
  --                          --
 */
 void insert(Image image, Image insert, int offset_x, int offset_y) {
-	// todo: implement
+
+    /* Array result_bytes = a_copy(image.pixels); */
+    /* Image result = make_image(result_bytes, image.width, image.height); */
+
+    assert(offset_x + insert.width < image.width);
+    assert(offset_y + insert.height < image.height);
+
+    for(int row = 0; row < insert.height; row++) {
+        for(int column = 0; column < insert.width; column++) {
+            Byte pixel = image_get_pixel(insert, row, column);
+            image_set_pixel(image, row + offset_y, column + offset_x, pixel);
+        }
+    }
 }
 
 int main() {
@@ -114,9 +191,9 @@ int main() {
 	Image cropped = crop(in, 448, 65, 180, 200);
 	save_image("out-cropped.png", cropped);
 	a_free(cropped.pixels);
-	
+
 	insert(in, half, 0, 0);
 	save_image("out-insert.png", in);
-	a_free(half.pixels);	
+	a_free(half.pixels);
 	a_free(in.pixels);
 }
