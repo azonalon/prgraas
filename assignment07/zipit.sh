@@ -3,7 +3,8 @@ zip_name=$(basename "$PWD")
 
 make clean
 
-pdflatex -shell-escape -file-line-error -interaction=nonstopmode \
+[[ -f text_aufgaben.tex ]] &&  \
+    pdflatex -shell-escape -file-line-error -interaction=nonstopmode \
     -output-directory="./" -halt-on-error text_aufgaben.tex
 
 rm -f ${zip_name}.zip
