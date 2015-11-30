@@ -58,7 +58,11 @@ Computes the area of an array of n rectangles (array of structs).
 @return the sum of the areas of the rectangles
 */
 double total_area(/*in*/ Rectangle *rs, int n) {
-	return 0.0; // @todo: implement
+    double total = 0;
+	for(int i = 0; i < n; i++) {
+        total += (rs[i].width) * (rs[i].height);
+    }
+    return total;
 }
 
 /**
@@ -68,7 +72,11 @@ Computes the area of an array of n pointers to rectangles (array of pointers to 
 @return the sum of the areas of the rectangles
 */
 double total_area_pointers(/*in*/ Rectangle **rs, int n) {
-	return 0.0; // @todo: implement
+	double total = 0;
+	for(int i = 0; i < n; i++) {
+        total += (rs[i] -> width) * (rs[i] -> height);
+    }
+    return total;
 }
 
 void scale_rectangles(/*inout*/ Rectangle *rs, int n, double factor);
@@ -101,7 +109,10 @@ Multiply the width and height of each rectangle by factor.
 @param[in] factor scale factor
 */
 void scale_rectangles(/*inout*/ Rectangle *rs, int n, double factor) {
-	// @todo: implement
+	for(int i = 0; i < n; i++) {
+        rs[i].width *= factor;
+        rs[i].height *= factor;
+    }
 }
 
 /**
@@ -111,7 +122,10 @@ Multiply the width and height of each rectangle by factor.
 @param[in] factor scale factor
 */
 void scale_rectangles_pointers(/*inout*/ Rectangle **rs, int n, double factor) {
-	// @todo: implement
+	for(int i = 0; i < n; i++) {
+        rs[i] -> width *= factor;
+        rs[i] -> height *= factor;
+    }
 }
 
 int main(void) {
