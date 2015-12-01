@@ -794,7 +794,21 @@ bool base_check_expect_boa(const char *file, const char *function, int line, Arr
 	return true;
 }
 
-
+bool base_check_expect_struct(const char *file, const char *function, int line, 
+	Any actual, Any expected, Any predicate) 
+{
+	bool (*pred)(Any, Any) = predicate;
+	base_init();
+	base_check_count++;
+	if (pred(actual, expected)) {
+		printf("%s, line %d: check passed\n", file, line);
+		base_check_success_count++;
+		return true;
+	} else {
+		printf("%s, line %d: Actual value differs from expected value.\n", file, line);
+		return false;
+	}
+}
 
 void base_count_check(void) {
 	base_init();

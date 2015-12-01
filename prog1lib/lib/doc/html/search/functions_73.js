@@ -67,6 +67,7 @@ var searchData=
   ['sa_5fsort_5fdec',['sa_sort_dec',['../string__array_8h.html#a00032f602c798e11d0c3d65568451fed',1,'string_array.h']]],
   ['sa_5fsort_5fdec_5fignore_5fcase',['sa_sort_dec_ignore_case',['../string__array_8h.html#ab34d2665a8a5657b83fe26eda930c2c0',1,'string_array.h']]],
   ['sa_5fsort_5fignore_5fcase',['sa_sort_ignore_case',['../string__array_8h.html#a9cabc2a3597e0b9d15a9d3460ab824de',1,'string_array.h']]],
+  ['sa_5fsplit',['sa_split',['../string__array_8h.html#ab6c0a4d53fbc6d65e0d15ad07a4d4745',1,'string_array.h']]],
   ['sl_5fappend',['sl_append',['../string__list_8h.html#a8417d6f1e193f5ab9ef6d392853592b1',1,'string_list.h']]],
   ['sl_5fcheck_5fexpect_5ffile_5fline',['sl_check_expect_file_line',['../string__list_8h.html#ad0e5757c83da40323c96710f59516a54',1,'string_list.h']]],
   ['sl_5fchoose',['sl_choose',['../string__list_8h.html#a0f61f6e1a68428386a61bd1b1dab34de',1,'string_list.h']]],

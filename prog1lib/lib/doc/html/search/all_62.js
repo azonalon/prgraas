@@ -61,6 +61,7 @@ var searchData=
   ['base_5fcheck_5fexpect_5fca',['base_check_expect_ca',['../base_8h.html#aa4b34323581ea1a0efb6490aa5994d2d',1,'base.h']]],
   ['base_5fcheck_5fexpect_5fi',['base_check_expect_i',['../base_8h.html#af0f717a0aaa1c47b28618e228adfa913',1,'base.h']]],
   ['base_5fcheck_5fexpect_5fs',['base_check_expect_s',['../base_8h.html#a65d865d1f798291ba64e30e4f8817221',1,'base.h']]],
+  ['base_5fcheck_5fexpect_5fstruct',['base_check_expect_struct',['../base_8h.html#a89890c317dadcbab23311cbfc2580a06',1,'base.h']]],
   ['base_5fcheck_5fwithin_5fd',['base_check_within_d',['../base_8h.html#a42875384f71a3c537d06f442344d7401',1,'base.h']]],
   ['base_5fcheck_5fwithin_5fi',['base_check_within_i',['../base_8h.html#acbeea7f6e811e89f09dc4d49d1bba005',1,'base.h']]],
   ['base_5fcount_5fcheck',['base_count_check',['../base_8h.html#a47615cf85d521f757f64d0cb052c1a80',1,'base.h']]],

@@ -127,6 +127,40 @@ Array sa_of_string(String s) {
 	return result;
 }
 
+Array sa_split(String s, char separator);
+
+// @todo: add test
+
+Array sa_split(String s, char separator) {
+	// count number of separators in s
+	int n = 0; // number of separators
+	char *t = s;
+	while (*t != '\0') {
+		if (*t == separator) n++;
+		t++;
+	}
+	
+	n++; // n separators, n + 1 array elements
+	String *a = xmalloc(n * sizeof(String));
+	t = s;
+	int i = 0;
+	char *start = s;
+	while (*t != '\0') {
+		while (*t != separator && *t != '\0') t++;
+		if (*t == '\0') break;
+		// assert: *t is separator
+		a[i++] = s_sub(start, 0, t - start);
+		t++; // skip separator
+		start = t;
+	}
+	a[i++] = s_sub(start, 0, t - start);
+	Array result = xmalloc(sizeof(ArrayHead));
+	result->n = n;
+	result->s = sizeof(String);
+	result->a = a;
+	return result;
+}
+
 static void a_copy_test(void) {
 	printsln((String)__func__);
 	Array array, copy;

@@ -11,6 +11,7 @@ var searchData=
   ['a_5feach2',['a_each2',['../array_8h.html#aec164dfb923b41fb3fce45a67d3beaa4',1,'array.h']]],
   ['a_5feach3',['a_each3',['../array_8h.html#aeb8856471d89dfe750df261e52018cb9',1,'array.h']]],
   ['a_5felement_5fsize',['a_element_size',['../array_8h.html#a8ddfa2c7d762b97690c305e9ae4e2f62',1,'array.h']]],
+  ['a_5fequals',['a_equals',['../array_8h.html#a03b803700c33239e14f164051de7e904',1,'array.h']]],
   ['a_5fexists',['a_exists',['../array_8h.html#abcd63ace099cfb63dcfb4e9349ff54da',1,'array.h']]],
   ['a_5ffilter',['a_filter',['../array_8h.html#af48ec0ec281511fa2a7bc5d731d33d65',1,'array.h']]],
   ['a_5ffn',['a_fn',['../array_8h.html#a2b9d44b24db52416d76485e921c4cc2a',1,'array.h']]],

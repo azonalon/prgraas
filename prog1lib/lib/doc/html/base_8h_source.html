@@ -24,7 +24,7 @@
   <td id="projectlogo"><img alt="Logo" src="hcilogo.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Programming I
-   &#160;<span id="projectnumber">version 0.4</span>
+   &#160;<span id="projectnumber">version 0.5</span>
    </div>
    <div id="projectbrief">Programming I C Library</div>
   </td>
@@ -346,35 +346,43 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00628"></a><span class="lineno">  628</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="base_8h.html#aa4b34323581ea1a0efb6490aa5994d2d">base_check_expect_ca</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *file, <span class="keyword">const</span> <span class="keywordtype">char</span> *<span class="keyword">function</span>, <span class="keywordtype">int</span> line, <a class="code" href="struct_array_head.html">Array</a> a, <span class="keywordtype">char</span> *e, <span class="keywordtype">int</span> ne);</div>
 <div class="line"><a name="l00629"></a><span class="lineno">  629</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="base_8h.html#afdbaffb6c56c864178d55f504b57bb05">base_check_expect_boa</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *file, <span class="keyword">const</span> <span class="keywordtype">char</span> *<span class="keyword">function</span>, <span class="keywordtype">int</span> line, <a class="code" href="struct_array_head.html">Array</a> a, <span class="keywordtype">bool</span> *e, <span class="keywordtype">int</span> ne);</div>
 <div class="line"><a name="l00630"></a><span class="lineno">  630</span>&#160;</div>
-<div class="line"><a name="l00632"></a><span class="lineno"><a class="line" href="base_8h.html#a5dd728ebdb36adfc9ff6021f6cd8db22">  632</a></span>&#160;<span class="preprocessor">#define check_expect_b(a, e) base_check_expect_b(__FILE__, __func__, __LINE__, a, e)</span></div>
-<div class="line"><a name="l00633"></a><span class="lineno">  633</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00635"></a><span class="lineno"><a class="line" href="base_8h.html#adac43ece582b76a4dfab300ba61d5fd0">  635</a></span>&#160;<span class="preprocessor">#define check_expect_i(a, e) base_check_expect_i(__FILE__, __func__, __LINE__, a, e)</span></div>
-<div class="line"><a name="l00636"></a><span class="lineno">  636</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00638"></a><span class="lineno"><a class="line" href="base_8h.html#a4a1d7072e103216e68a8ba33cb3ba1c6">  638</a></span>&#160;<span class="preprocessor">#define check_within_d(a, e, epsilon) base_check_within_d(__FILE__, __func__, __LINE__, a, e, epsilon)</span></div>
-<div class="line"><a name="l00639"></a><span class="lineno">  639</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00641"></a><span class="lineno"><a class="line" href="base_8h.html#a92aaf68e49007145a998670578a2a97f">  641</a></span>&#160;<span class="preprocessor">#define check_within_i(a, e, epsilon) base_check_within_i(__FILE__, __func__, __LINE__, a, e, epsilon)</span></div>
-<div class="line"><a name="l00642"></a><span class="lineno">  642</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00644"></a><span class="lineno"><a class="line" href="base_8h.html#add9bb2adc4fbe160b1f18bba3d303f82">  644</a></span>&#160;<span class="preprocessor">#define check_expect_c(a, e) base_check_expect_c(__FILE__, __func__, __LINE__, a, e)</span></div>
-<div class="line"><a name="l00645"></a><span class="lineno">  645</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00647"></a><span class="lineno"><a class="line" href="base_8h.html#a64932cbfd8bfb16d01b76f4434df8b56">  647</a></span>&#160;<span class="preprocessor">#define check_expect_s(a, e) base_check_expect_s(__FILE__, __func__, __LINE__, a, e)</span></div>
-<div class="line"><a name="l00648"></a><span class="lineno">  648</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00649"></a><span class="lineno">  649</span>&#160;</div>
-<div class="line"><a name="l00650"></a><span class="lineno">  650</span>&#160;</div>
-<div class="line"><a name="l00652"></a><span class="lineno"><a class="line" href="base_8h.html#a8fc44f33d6835213526d949eb709b204">  652</a></span>&#160;<span class="preprocessor">#define check_expect_ca(a, e, ne) base_check_expect_ca(__FILE__, __func__, __LINE__, a, e, ne)</span></div>
+<div class="line"><a name="l00631"></a><span class="lineno">  631</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="base_8h.html#a89890c317dadcbab23311cbfc2580a06">base_check_expect_struct</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *file, <span class="keyword">const</span> <span class="keywordtype">char</span> *<span class="keyword">function</span>, <span class="keywordtype">int</span> line, </div>
+<div class="line"><a name="l00632"></a><span class="lineno">  632</span>&#160;        <a class="code" href="basedefs_8h.html#a71a5220adaab9f4a54e2437c4fb48934">Any</a> actual, <a class="code" href="basedefs_8h.html#a71a5220adaab9f4a54e2437c4fb48934">Any</a> expected, <a class="code" href="basedefs_8h.html#a71a5220adaab9f4a54e2437c4fb48934">Any</a> predicate);</div>
+<div class="line"><a name="l00633"></a><span class="lineno">  633</span>&#160;</div>
+<div class="line"><a name="l00634"></a><span class="lineno">  634</span>&#160;</div>
+<div class="line"><a name="l00635"></a><span class="lineno">  635</span>&#160;</div>
+<div class="line"><a name="l00637"></a><span class="lineno"><a class="line" href="base_8h.html#a5dd728ebdb36adfc9ff6021f6cd8db22">  637</a></span>&#160;<span class="preprocessor">#define check_expect_b(a, e) base_check_expect_b(__FILE__, __func__, __LINE__, a, e)</span></div>
+<div class="line"><a name="l00638"></a><span class="lineno">  638</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00640"></a><span class="lineno"><a class="line" href="base_8h.html#adac43ece582b76a4dfab300ba61d5fd0">  640</a></span>&#160;<span class="preprocessor">#define check_expect_i(a, e) base_check_expect_i(__FILE__, __func__, __LINE__, a, e)</span></div>
+<div class="line"><a name="l00641"></a><span class="lineno">  641</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00643"></a><span class="lineno"><a class="line" href="base_8h.html#a4a1d7072e103216e68a8ba33cb3ba1c6">  643</a></span>&#160;<span class="preprocessor">#define check_within_d(a, e, epsilon) base_check_within_d(__FILE__, __func__, __LINE__, a, e, epsilon)</span></div>
+<div class="line"><a name="l00644"></a><span class="lineno">  644</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00646"></a><span class="lineno"><a class="line" href="base_8h.html#a92aaf68e49007145a998670578a2a97f">  646</a></span>&#160;<span class="preprocessor">#define check_within_i(a, e, epsilon) base_check_within_i(__FILE__, __func__, __LINE__, a, e, epsilon)</span></div>
+<div class="line"><a name="l00647"></a><span class="lineno">  647</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00649"></a><span class="lineno"><a class="line" href="base_8h.html#add9bb2adc4fbe160b1f18bba3d303f82">  649</a></span>&#160;<span class="preprocessor">#define check_expect_c(a, e) base_check_expect_c(__FILE__, __func__, __LINE__, a, e)</span></div>
+<div class="line"><a name="l00650"></a><span class="lineno">  650</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00652"></a><span class="lineno"><a class="line" href="base_8h.html#a64932cbfd8bfb16d01b76f4434df8b56">  652</a></span>&#160;<span class="preprocessor">#define check_expect_s(a, e) base_check_expect_s(__FILE__, __func__, __LINE__, a, e)</span></div>
 <div class="line"><a name="l00653"></a><span class="lineno">  653</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00655"></a><span class="lineno"><a class="line" href="base_8h.html#a13ddb3e02f26cfb12836500951a53ebf">  655</a></span>&#160;<span class="preprocessor">#define check_expect_boa(a, e, ne) base_check_expect_ba(__FILE__, __func__, __LINE__, a, e, ne)</span></div>
-<div class="line"><a name="l00656"></a><span class="lineno">  656</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00657"></a><span class="lineno">  657</span>&#160;</div>
-<div class="line"><a name="l00658"></a><span class="lineno">  658</span>&#160;</div>
-<div class="line"><a name="l00660"></a><span class="lineno">  660</span>&#160;<span class="keywordtype">void</span> <a class="code" href="base_8h.html#a47615cf85d521f757f64d0cb052c1a80">base_count_check</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00661"></a><span class="lineno">  661</span>&#160;</div>
-<div class="line"><a name="l00663"></a><span class="lineno">  663</span>&#160;<span class="keywordtype">void</span> <a class="code" href="base_8h.html#a4dbb11c2c4fc313d770ca681ce8552a7">base_count_success</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00664"></a><span class="lineno">  664</span>&#160;</div>
-<div class="line"><a name="l00665"></a><span class="lineno">  665</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00654"></a><span class="lineno">  654</span>&#160;</div>
+<div class="line"><a name="l00655"></a><span class="lineno">  655</span>&#160;</div>
+<div class="line"><a name="l00657"></a><span class="lineno"><a class="line" href="base_8h.html#a8fc44f33d6835213526d949eb709b204">  657</a></span>&#160;<span class="preprocessor">#define check_expect_ca(a, e, ne) base_check_expect_ca(__FILE__, __func__, __LINE__, a, e, ne)</span></div>
+<div class="line"><a name="l00658"></a><span class="lineno">  658</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00660"></a><span class="lineno"><a class="line" href="base_8h.html#a13ddb3e02f26cfb12836500951a53ebf">  660</a></span>&#160;<span class="preprocessor">#define check_expect_boa(a, e, ne) base_check_expect_ba(__FILE__, __func__, __LINE__, a, e, ne)</span></div>
+<div class="line"><a name="l00661"></a><span class="lineno">  661</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00663"></a><span class="lineno"><a class="line" href="base_8h.html#ac115f6880a8b01c517906e1af29aa207">  663</a></span>&#160;<span class="preprocessor">#define check_expect_struct(a, e, p) base_check_expect_struct(__FILE__, __func__, __LINE__, &amp;a, &amp;e, p)</span></div>
+<div class="line"><a name="l00664"></a><span class="lineno">  664</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00665"></a><span class="lineno">  665</span>&#160;</div>
+<div class="line"><a name="l00666"></a><span class="lineno">  666</span>&#160;</div>
+<div class="line"><a name="l00668"></a><span class="lineno">  668</span>&#160;<span class="keywordtype">void</span> <a class="code" href="base_8h.html#a47615cf85d521f757f64d0cb052c1a80">base_count_check</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00669"></a><span class="lineno">  669</span>&#160;</div>
+<div class="line"><a name="l00671"></a><span class="lineno">  671</span>&#160;<span class="keywordtype">void</span> <a class="code" href="base_8h.html#a4dbb11c2c4fc313d770ca681ce8552a7">base_count_success</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00672"></a><span class="lineno">  672</span>&#160;</div>
+<div class="line"><a name="l00673"></a><span class="lineno">  673</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="base_8h_html_ad1c4d622813ef04106df6200a9217174"><div class="ttname"><a href="base_8h.html#ad1c4d622813ef04106df6200a9217174">make_byte_some</a></div><div class="ttdeci">ByteOption make_byte_some(Byte some)</div><div class="ttdoc">Create a byte option for some value (on the stack). </div></div>
 <div class="ttc" id="base_8h_html_af0f0632b70997905d3b0aaf794bfcffc"><div class="ttname"><a href="base_8h.html#af0f0632b70997905d3b0aaf794bfcffc">base_set_memory_check</a></div><div class="ttdeci">void base_set_memory_check(bool do_check)</div><div class="ttdoc">Switch on or off memory checking at termination of the programx. </div></div>
 <div class="ttc" id="base_8h_html_a6826ef710a601dd94dfa60589a4b1083"><div class="ttname"><a href="base_8h.html#a6826ef710a601dd94dfa60589a4b1083">printcln</a></div><div class="ttdeci">void printcln(char c)</div><div class="ttdoc">Print a character followed by a line break. </div></div>
 <div class="ttc" id="base_8h_html_a856dee535ffc8ff8f48ffa57777d289f"><div class="ttname"><a href="base_8h.html#a856dee535ffc8ff8f48ffa57777d289f">printb</a></div><div class="ttdeci">void printb(bool b)</div><div class="ttdoc">Print a boolean value. </div></div>
+<div class="ttc" id="base_8h_html_a89890c317dadcbab23311cbfc2580a06"><div class="ttname"><a href="base_8h.html#a89890c317dadcbab23311cbfc2580a06">base_check_expect_struct</a></div><div class="ttdeci">bool base_check_expect_struct(const char *file, const char *function, int line, Any actual, Any expected, Any predicate)</div></div>
 <div class="ttc" id="string_8h_html"><div class="ttname"><a href="string_8h.html">string.h</a></div><div class="ttdoc">This file contains operations on String, such as comparing, getting characters, converting to lower c...</div></div>
 <div class="ttc" id="base_8h_html_a85fcf3c806201ec8acf30b156a92c595"><div class="ttname"><a href="base_8h.html#a85fcf3c806201ec8acf30b156a92c595">make_int_none</a></div><div class="ttdeci">IntOption make_int_none(void)</div><div class="ttdoc">Create a non-present integer option (on the stack). </div></div>
 <div class="ttc" id="base_8h_html_a3f8338ba31711892db728fb5062f6bc8"><div class="ttname"><a href="base_8h.html#a3f8338ba31711892db728fb5062f6bc8">make_int_triple</a></div><div class="ttdeci">IntTriple make_int_triple(int i, int j, int k)</div><div class="ttdoc">Create a pair of integers (on the stack). </div></div>
@@ -458,7 +466,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Nov 15 2015 16:09:22 for Programming I by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Nov 20 2015 20:03:55 for Programming I by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.4
 </small></address>

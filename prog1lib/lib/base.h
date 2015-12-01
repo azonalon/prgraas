@@ -628,6 +628,11 @@ bool base_check_expect_s(const char *file, const char *function, int line, Strin
 bool base_check_expect_ca(const char *file, const char *function, int line, Array a, char *e, int ne);
 bool base_check_expect_boa(const char *file, const char *function, int line, Array a, bool *e, int ne);
 
+bool base_check_expect_struct(const char *file, const char *function, int line, 
+		Any actual, Any expected, Any predicate);
+
+
+
 /** Check whether the actual boolean (first argument) is equal to the expected boolean (second argument). */
 #define check_expect_b(a, e) base_check_expect_b(__FILE__, __func__, __LINE__, a, e)
 
@@ -653,6 +658,9 @@ bool base_check_expect_boa(const char *file, const char *function, int line, Arr
 
 /** Check whether the actual array (first argument) is equal to the expected array (second argument). */
 #define check_expect_boa(a, e, ne) base_check_expect_ba(__FILE__, __func__, __LINE__, a, e, ne)
+
+/** Check whether the actual struct (first argument) is equal to the expected struct (second argument). */
+#define check_expect_struct(a, e, p) base_check_expect_struct(__FILE__, __func__, __LINE__, &a, &e, p)
 
 
 

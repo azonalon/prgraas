@@ -24,7 +24,7 @@
   <td id="projectlogo"><img alt="Logo" src="hcilogo.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Programming I
-   &#160;<span id="projectnumber">version 0.4</span>
+   &#160;<span id="projectnumber">version 0.5</span>
    </div>
    <div id="projectbrief">Programming I C Library</div>
   </td>
@@ -112,6 +112,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a288ebc7cbbe719edbcc128f28d2cbbff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="basedefs_8h.html#aa566096b02e5f55b63561cc1af553439">Array</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="string__array_8h.html#a288ebc7cbbe719edbcc128f28d2cbbff">sa_of_string</a> (<a class="el" href="basedefs_8h.html#a2efe6d463d80744789f228f5dc4baa39">String</a> s)</td></tr>
 <tr class="memdesc:a288ebc7cbbe719edbcc128f28d2cbbff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an array from the given string.  <a href="#a288ebc7cbbe719edbcc128f28d2cbbff">More...</a><br/></td></tr>
 <tr class="separator:a288ebc7cbbe719edbcc128f28d2cbbff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6c0a4d53fbc6d65e0d15ad07a4d4745"><td class="memItemLeft" align="right" valign="top"><a class="el" href="basedefs_8h.html#aa566096b02e5f55b63561cc1af553439">Array</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="string__array_8h.html#ab6c0a4d53fbc6d65e0d15ad07a4d4745">sa_split</a> (<a class="el" href="basedefs_8h.html#a2efe6d463d80744789f228f5dc4baa39">String</a> s, char separator)</td></tr>
+<tr class="memdesc:ab6c0a4d53fbc6d65e0d15ad07a4d4745"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an array from the given string.  <a href="#ab6c0a4d53fbc6d65e0d15ad07a4d4745">More...</a><br/></td></tr>
+<tr class="separator:ab6c0a4d53fbc6d65e0d15ad07a4d4745"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f7b4035e3e2b9dfb4d7d3eef90d91d5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="string__array_8h.html#a2f7b4035e3e2b9dfb4d7d3eef90d91d5">sa_free</a> (<a class="el" href="basedefs_8h.html#aa566096b02e5f55b63561cc1af553439">Array</a> array)</td></tr>
 <tr class="memdesc:a2f7b4035e3e2b9dfb4d7d3eef90d91d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the array itself and each element.  <a href="#a2f7b4035e3e2b9dfb4d7d3eef90d91d5">More...</a><br/></td></tr>
 <tr class="separator:a2f7b4035e3e2b9dfb4d7d3eef90d91d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1598,10 +1601,47 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ab6c0a4d53fbc6d65e0d15ad07a4d4745"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="basedefs_8h.html#aa566096b02e5f55b63561cc1af553439">Array</a> sa_split </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="basedefs_8h.html#a2efe6d463d80744789f228f5dc4baa39">String</a>&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>separator</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Create an array from the given string. </p>
+<p>Use separator as the separator. All the elements in the array are new dynamically allocated Strings. Example: <code>sa_split("hello+world+moin moin", '+')</code> creates a String array <code>["hello", "world", "moin moin"]</code></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">s</td><td>string representation of String array </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">separator</td><td>this character separates parts of the string </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the initialized array </dd></dl>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Nov 15 2015 16:09:22 for Programming I by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Nov 20 2015 20:03:55 for Programming I by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.4
 </small></address>

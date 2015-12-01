@@ -87,16 +87,26 @@ Polyline *create_circle(double step1, double radius1, double step2, double radiu
 }
 
 void set_pixel(Image *image, int x, int y, Color color) {
-	// todo: implement (a)
-	// check for invalid coordinates
+    /* printf("x: %d, y: %d \n",  x, y); */
+    if(x >= image->width || y >= image->height) {
+        printf("width: %d, height: %d \n",image->width, image->height);
+        printf("x: %d, y: %d \n",  x, y);
+        assert(false);
+    }
+
+    int h = image->height - y;
+    Byte* first = image->data + 3 * image->width * h + 3 * x;
+    *(first) = color.red;
+    *(first + 1) = color.green;
+    *(first + 2) = color.blue;
 }
 
 // adapted from http://rosettacode.org/wiki/Bitmap/Bresenham's_line_algorithm#C
 void draw_line(Image *image, int x0, int y0, int x1, int y1, Color color) {
 	int dx = abs(x1 - x0), sx = x0 < x1 ? 1 : -1;
-	int dy = abs(y1 - y0), sy = y0 < y1 ? 1 : -1; 
+	int dy = abs(y1 - y0), sy = y0 < y1 ? 1 : -1;
 	int err = (dx > dy ? dx : -dy) / 2, e2;
-	
+
 	while (true) {
 		set_pixel(image, x0, y0, color);
 		if (x0 == x1 && y0 == y1) break;
@@ -106,7 +116,7 @@ void draw_line(Image *image, int x0, int y0, int x1, int y1, Color color) {
 			x0 += sx;
 		}
 		if (e2 < dy){
-			err += dx; 
+			err += dx;
 			y0 += sy;
 		}
 	}
@@ -119,17 +129,17 @@ void draw_polylines_test(void) {
 	Polyline *pl1 = create_circle(M_PI / 180, 200, 10 * M_PI / 180,  60, make_color(0, 0, 255));
 	Polyline *pl2 = create_circle(M_PI / 180, 100, 10 * M_PI / 180,  30, make_color(0, 255, 0));
 	Polyline *pl3 = create_circle(M_PI / 180,  50, 10 * M_PI / 180,  15, make_color(255, 0, 0));
-	Polyline *pl4 = create_circle(M_PI / 180, 400, 10 * M_PI / 180, 120, make_color(0, 255, 255));
+	Polyline *pl4 = create_circle(M_PI / 180, 300, 10 * M_PI / 180, 90, make_color(0, 255, 255));
 	Polyline *polylines[] = { pl1, pl2, pl3, pl4 };
-	
+
 	Image image = make_image(800, 800);
 	draw_polylines(polylines, 4, &image);
 	stbi_write_png("polylines.png", image.width, image.height, 3, image.data, 3 * image.width);
 
-	clear_image(&image);
-	scale_polylines(polylines, 4, 0.8, 0.4);
-	draw_polylines(polylines, 4, &image);
-	stbi_write_png("polylines_scaled.png", image.width, image.height, 3, image.data, 3 * image.width);
+	/* clear_image(&image); */
+	/* scale_polylines(polylines, 4, 0.8, 0.4); */
+	/* draw_polylines(polylines, 4, &image); */
+	/* stbi_write_png("polylines_scaled.png", image.width, image.height, 3, image.data, 3 * image.width); */
 }
 
 /**
@@ -138,9 +148,20 @@ Draws the polylines in the given image.
 @param[in] polylineCount number of pointers
 @param[inout] image image to add polylines to
 */
-void draw_polylines(/*in*/ Polyline** polylines, int polylineCount, /*inout*/ Image *image) 
+void draw_polylines(/*in*/ Polyline** polylines, int polylineCount, /*inout*/ Image *image)
 {
-	// @todo: implement
+    for(int ipolyline = 0; ipolyline < polylineCount; ipolyline++) {
+        Polyline* polyline = polylines[ipolyline];
+        printf("Drawing polyline object number %d\n", ipolyline);
+        for(int ipoint = 0; ipoint < polyline->points_count - 1; ipoint++) {
+            printf("%d\n", ipoint);
+            int x0 = polyline->points[ipoint].x;
+            int y0 = polyline->points[ipoint].y;
+            int x1 = polyline->points[ipoint+1].x;
+            int y1 = polyline->points[ipoint+1].y;
+            draw_line(image, x0, y0, x1, y1, polyline->color);
+        }
+    }
 }
 
 /**
@@ -149,8 +170,10 @@ Multiplies each polyline point with (sx, sy).
 @param[in] polylineCount number of pointers
 @param[in] sx scale factor in x-direction
 @param[in] sy scale factor in y-direction
+
 */
-void scale_polylines(/*inout*/ Polyline** polylines, int polylineCount, double sx, double sy) 
+
+void scale_polylines(/*inout*/ Polyline** polylines, int polylineCount, double sx, double sy)
 {
 	// @todo: implement
 }

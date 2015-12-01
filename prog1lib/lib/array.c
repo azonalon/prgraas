@@ -606,6 +606,13 @@ void a_println(Array array, AnyToVoid print_element) {
 	printf("\n");
 }
 
+bool a_equals(Array a, Array b) {
+	if (a->n != b->n || a->s != b->s) return false;
+	if (a->a == NULL && b->a == NULL) return true;
+	if (a->a == NULL || b->a == NULL) return false;
+	return memcmp(a, b, a->n * a->s) == 0;
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 
 Array a_concat(Array x, Array y);

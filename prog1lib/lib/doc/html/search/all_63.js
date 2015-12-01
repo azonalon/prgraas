@@ -8,6 +8,7 @@ var searchData=
   ['check_5fexpect_5fca',['check_expect_ca',['../base_8h.html#a8fc44f33d6835213526d949eb709b204',1,'base.h']]],
   ['check_5fexpect_5fi',['check_expect_i',['../base_8h.html#adac43ece582b76a4dfab300ba61d5fd0',1,'base.h']]],
   ['check_5fexpect_5fs',['check_expect_s',['../base_8h.html#a64932cbfd8bfb16d01b76f4434df8b56',1,'base.h']]],
+  ['check_5fexpect_5fstruct',['check_expect_struct',['../base_8h.html#ac115f6880a8b01c517906e1af29aa207',1,'base.h']]],
   ['check_5fwithin_5fd',['check_within_d',['../base_8h.html#a4a1d7072e103216e68a8ba33cb3ba1c6',1,'base.h']]],
   ['check_5fwithin_5fi',['check_within_i',['../base_8h.html#a92aaf68e49007145a998670578a2a97f',1,'base.h']]],
   ['cmpresult',['CmpResult',['../basedefs_8h.html#a03c95caff706fef887de038b3e663bb6',1,'basedefs.h']]],

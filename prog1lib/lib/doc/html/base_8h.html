@@ -24,7 +24,7 @@
   <td id="projectlogo"><img alt="Logo" src="hcilogo.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Programming I
-   &#160;<span id="projectnumber">version 0.4</span>
+   &#160;<span id="projectnumber">version 0.5</span>
    </div>
    <div id="projectbrief">Programming I C Library</div>
   </td>
@@ -166,6 +166,9 @@ Macros</h2></td></tr>
 <tr class="memitem:a13ddb3e02f26cfb12836500951a53ebf"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="base_8h.html#a13ddb3e02f26cfb12836500951a53ebf">check_expect_boa</a>(a, e, ne)&#160;&#160;&#160;base_check_expect_ba(__FILE__, __func__, __LINE__, a, e, ne)</td></tr>
 <tr class="memdesc:a13ddb3e02f26cfb12836500951a53ebf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check whether the actual array (first argument) is equal to the expected array (second argument).  <a href="#a13ddb3e02f26cfb12836500951a53ebf">More...</a><br/></td></tr>
 <tr class="separator:a13ddb3e02f26cfb12836500951a53ebf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac115f6880a8b01c517906e1af29aa207"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="base_8h.html#ac115f6880a8b01c517906e1af29aa207">check_expect_struct</a>(a, e, p)&#160;&#160;&#160;<a class="el" href="base_8h.html#a89890c317dadcbab23311cbfc2580a06">base_check_expect_struct</a>(__FILE__, __func__, __LINE__, &amp;a, &amp;e, p)</td></tr>
+<tr class="memdesc:ac115f6880a8b01c517906e1af29aa207"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check whether the actual struct (first argument) is equal to the expected struct (second argument).  <a href="#ac115f6880a8b01c517906e1af29aa207">More...</a><br/></td></tr>
+<tr class="separator:ac115f6880a8b01c517906e1af29aa207"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -353,6 +356,8 @@ Functions</h2></td></tr>
 <tr class="separator:aa4b34323581ea1a0efb6490aa5994d2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afdbaffb6c56c864178d55f504b57bb05"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="base_8h.html#afdbaffb6c56c864178d55f504b57bb05">base_check_expect_boa</a> (const char *file, const char *function, int line, <a class="el" href="basedefs_8h.html#aa566096b02e5f55b63561cc1af553439">Array</a> a, bool *e, int ne)</td></tr>
 <tr class="separator:afdbaffb6c56c864178d55f504b57bb05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89890c317dadcbab23311cbfc2580a06"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="base_8h.html#a89890c317dadcbab23311cbfc2580a06">base_check_expect_struct</a> (const char *file, const char *function, int line, <a class="el" href="basedefs_8h.html#a71a5220adaab9f4a54e2437c4fb48934">Any</a> actual, <a class="el" href="basedefs_8h.html#a71a5220adaab9f4a54e2437c4fb48934">Any</a> expected, <a class="el" href="basedefs_8h.html#a71a5220adaab9f4a54e2437c4fb48934">Any</a> predicate)</td></tr>
+<tr class="separator:a89890c317dadcbab23311cbfc2580a06"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a47615cf85d521f757f64d0cb052c1a80"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="base_8h.html#a47615cf85d521f757f64d0cb052c1a80">base_count_check</a> (void)</td></tr>
 <tr class="memdesc:a47615cf85d521f757f64d0cb052c1a80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call this from within check_* functions to count the number of checks.  <a href="#a47615cf85d521f757f64d0cb052c1a80">More...</a><br/></td></tr>
 <tr class="separator:a47615cf85d521f757f64d0cb052c1a80"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -738,6 +743,40 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Check whether the actual String (first argument) is equal to the expected String (second argument). </p>
+
+</div>
+</div>
+<a class="anchor" id="ac115f6880a8b01c517906e1af29aa207"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define check_expect_struct</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">a, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">e, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">p&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;<a class="el" href="base_8h.html#a89890c317dadcbab23311cbfc2580a06">base_check_expect_struct</a>(__FILE__, __func__, __LINE__, &amp;a, &amp;e, p)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check whether the actual struct (first argument) is equal to the expected struct (second argument). </p>
 
 </div>
 </div>
@@ -1301,6 +1340,56 @@ Functions</h2></td></tr>
           <td></td>
           <td class="paramtype"><a class="el" href="basedefs_8h.html#a2efe6d463d80744789f228f5dc4baa39">String</a>&#160;</td>
           <td class="paramname"><em>e</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a89890c317dadcbab23311cbfc2580a06"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool base_check_expect_struct </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>function</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>line</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="basedefs_8h.html#a71a5220adaab9f4a54e2437c4fb48934">Any</a>&#160;</td>
+          <td class="paramname"><em>actual</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="basedefs_8h.html#a71a5220adaab9f4a54e2437c4fb48934">Any</a>&#160;</td>
+          <td class="paramname"><em>expected</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="basedefs_8h.html#a71a5220adaab9f4a54e2437c4fb48934">Any</a>&#160;</td>
+          <td class="paramname"><em>predicate</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -2893,7 +2982,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Nov 15 2015 16:09:22 for Programming I by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Nov 20 2015 20:03:55 for Programming I by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.4
 </small></address>

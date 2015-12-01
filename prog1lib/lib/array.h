@@ -158,6 +158,14 @@ void print_element(Any element) {}
 void a_println(Array array, AnyToVoid print_element);
 
 /**
+Return true iff the given arrays are equal. Performs a bytewise comparison on the data.
+@param[in] a first input array
+@param[in] b second input array
+@return true if arrays are equal, false otherwise
+*/
+bool a_equals(Array a, Array b);
+
+/**
 Return a new array that is the concatenation of x and y. Does not modify x or y.
 The elements of x come first, followed by the elements of y.
 @param[in] x first input array

@@ -32,6 +32,19 @@ Example: sa_of_string("hello, world, hello") creates String array ["hello", "wor
 Array sa_of_string(String s);
 
 /**
+Create an array from the given string.
+Use separator as the separator.
+All the elements in the array are new dynamically allocated Strings.
+Example: <code>sa_split("hello+world+moin moin", '+')</code>
+creates a String array <code>["hello", "world", "moin moin"]</code>
+
+@param[in] s string representation of String array
+@param[in] separator this character separates parts of the string
+@return the initialized array
+*/
+Array sa_split(String s, char separator);
+
+/**
 Frees the array itself and each element. If you do not intend to free each element, use \ref a_free instead.
 @param[in,out] array to be freed, unusable thereafter
 */
