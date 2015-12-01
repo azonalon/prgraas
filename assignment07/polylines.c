@@ -89,6 +89,7 @@ Polyline *create_circle(double step1, double radius1, double step2, double radiu
 void set_pixel(Image *image, int x, int y, Color color) {
     /* printf("x: %d, y: %d \n",  x, y); */
     if(x >= image->width || y >= image->height) {
+        printf("Out of Bounds error: \n");
         printf("width: %d, height: %d \n",image->width, image->height);
         printf("x: %d, y: %d \n",  x, y);
         assert(false);
@@ -129,17 +130,18 @@ void draw_polylines_test(void) {
 	Polyline *pl1 = create_circle(M_PI / 180, 200, 10 * M_PI / 180,  60, make_color(0, 0, 255));
 	Polyline *pl2 = create_circle(M_PI / 180, 100, 10 * M_PI / 180,  30, make_color(0, 255, 0));
 	Polyline *pl3 = create_circle(M_PI / 180,  50, 10 * M_PI / 180,  15, make_color(255, 0, 0));
-	Polyline *pl4 = create_circle(M_PI / 180, 300, 10 * M_PI / 180, 90, make_color(0, 255, 255));
+	/* Polyline *pl4 = create_circle(M_PI / 180, 400, 10 * M_PI / 180, 120, make_color(0, 255, 255)); */
+	Polyline *pl4 = create_circle(M_PI / 180, 300, 10 * M_PI / 180, 90 , make_color(0, 255, 255));
 	Polyline *polylines[] = { pl1, pl2, pl3, pl4 };
 
 	Image image = make_image(800, 800);
 	draw_polylines(polylines, 4, &image);
 	stbi_write_png("polylines.png", image.width, image.height, 3, image.data, 3 * image.width);
 
-	/* clear_image(&image); */
-	/* scale_polylines(polylines, 4, 0.8, 0.4); */
-	/* draw_polylines(polylines, 4, &image); */
-	/* stbi_write_png("polylines_scaled.png", image.width, image.height, 3, image.data, 3 * image.width); */
+	clear_image(&image);
+	scale_polylines(polylines, 4, 0.8, 0.4);
+	draw_polylines(polylines, 4, &image);
+	stbi_write_png("polylines_scaled.png", image.width, image.height, 3, image.data, 3 * image.width);
 }
 
 /**
@@ -152,9 +154,9 @@ void draw_polylines(/*in*/ Polyline** polylines, int polylineCount, /*inout*/ Im
 {
     for(int ipolyline = 0; ipolyline < polylineCount; ipolyline++) {
         Polyline* polyline = polylines[ipolyline];
-        printf("Drawing polyline object number %d\n", ipolyline);
+        /* printf("Drawing polyline object number %d\n", ipolyline); */
         for(int ipoint = 0; ipoint < polyline->points_count - 1; ipoint++) {
-            printf("%d\n", ipoint);
+            /* printf("%d\n", ipoint); */
             int x0 = polyline->points[ipoint].x;
             int y0 = polyline->points[ipoint].y;
             int x1 = polyline->points[ipoint+1].x;
@@ -173,9 +175,16 @@ Multiplies each polyline point with (sx, sy).
 
 */
 
-void scale_polylines(/*inout*/ Polyline** polylines, int polylineCount, double sx, double sy)
+void scale_polylines(/*inout*/ Polyline** polylines, int polylineCount,
+                     double sx, double sy)
 {
-	// @todo: implement
+    for(int ipolyline = 0; ipolyline < polylineCount; ipolyline++) {
+        Polyline* polyline = polylines[ipolyline];
+        for(int ipoint = 0; ipoint < polyline->points_count; ipoint++) {
+            polyline->points[ipoint].x *= sx;
+            polyline->points[ipoint].y *= sy;
+        }
+    }
 }
 
 int main(void) {
