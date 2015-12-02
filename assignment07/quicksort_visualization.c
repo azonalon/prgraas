@@ -114,7 +114,7 @@ void quicksort_test(void) {
     plot_array_64_black(&quicksort_im, test_array);
     write_image(&quicksort_im, 0);
 
-    quicksort(test_array, 0, 64);
+    quicksort(test_array, 0, 63);
 }
 
 int main(void) {

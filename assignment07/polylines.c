@@ -88,18 +88,23 @@ Polyline *create_circle(double step1, double radius1, double step2, double radiu
 
 void set_pixel(Image *image, int x, int y, Color color) {
     /* printf("x: %d, y: %d \n",  x, y); */
-    if(x >= image->width || y >= image->height) {
+    if(x >= image->width  || y >= image->height || y < 0 || x < 0) {
         printf("Out of Bounds error: \n");
         printf("width: %d, height: %d \n",image->width, image->height);
         printf("x: %d, y: %d \n",  x, y);
-        assert(false);
+        /* assert(false); */
+        return;
     }
 
-    int h = image->height - y;
-    Byte* first = image->data + 3 * image->width * h + 3 * x;
-    *(first) = color.red;
-    *(first + 1) = color.green;
-    *(first + 2) = color.blue;
+    /* assert(x < image->width -10 && y < image->height -10) ; */
+    int h = image->height - y - 1;
+    if(h < 0){
+        return;
+    }
+    int index = 3 * image->width * h + 3 * x;
+    image->data[index] = color.red;
+    image->data[index + 1] = color.green;
+    image->data[index + 2] = color.blue;
 }
 
 // adapted from http://rosettacode.org/wiki/Bitmap/Bresenham's_line_algorithm#C
@@ -130,8 +135,8 @@ void draw_polylines_test(void) {
 	Polyline *pl1 = create_circle(M_PI / 180, 200, 10 * M_PI / 180,  60, make_color(0, 0, 255));
 	Polyline *pl2 = create_circle(M_PI / 180, 100, 10 * M_PI / 180,  30, make_color(0, 255, 0));
 	Polyline *pl3 = create_circle(M_PI / 180,  50, 10 * M_PI / 180,  15, make_color(255, 0, 0));
-	/* Polyline *pl4 = create_circle(M_PI / 180, 400, 10 * M_PI / 180, 120, make_color(0, 255, 255)); */
-	Polyline *pl4 = create_circle(M_PI / 180, 300, 10 * M_PI / 180, 90 , make_color(0, 255, 255));
+	Polyline *pl4 = create_circle(M_PI / 180, 400, 10 * M_PI / 180, 120, make_color(0, 255, 255));
+	/* Polyline *pl4 = create_circle(M_PI / 180, 300, 10 * M_PI / 180, 90 , make_color(0, 255, 255)); */
 	Polyline *polylines[] = { pl1, pl2, pl3, pl4 };
 
 	Image image = make_image(800, 800);
