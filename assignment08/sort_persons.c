@@ -15,18 +15,27 @@ struct Person {
 typedef struct Person Person;
 
 Person *make_person(String first, String last, int year_of_birth, String occupation) {
-    // todo: implement
-    // dynamically allocate the person
-    return NULL;
+    Person* p = xmalloc(sizeof(Person));
+    p -> first_name = xmalloc(s_length(first) * sizeof(char));
+    p -> first_name = first;
+    p -> last_name = xmalloc(s_length(last) * sizeof(char));
+    p -> last_name = last;
+    p -> year_of_birth = year_of_birth;
+    p -> occupation = xmalloc(s_length(occupation) * sizeof(char));
+    p -> occupation = occupation;
 }
 
 void println_person(Person *p) {
-    // todo: implement
-    // output format, for example: (Albert, Einstein, 1879, Physiker)
+    String output = s_concat(s_concat(s_concat(s_concat(s_concat(s_concat(
+        "(", p -> first_name), ", "), p -> last_name), ", %d, "), p -> occupation), ")");
+    printf(output, p -> year_of_birth);
 }
 
 void free_person(Person *p) {
-    // todo: implement
+    free(p -> first_name);
+    free(p -> last_name);
+    free(p -> occupation);
+    free(p);
 }
 
 /*
@@ -41,22 +50,28 @@ typedef CmpResult (*PersonComparator)(Person *a, Person *b);
 
 // todo: implement
 CmpResult compare_first_name(Person *a, Person *b) {
-    return EQ;
+    return s_compare(a -> first_name, b -> first_name);
 }
 
 // todo: implement
 CmpResult compare_last_name(Person *a, Person *b) {
-    return EQ;
+    return s_compare(a -> last_name, b -> last_name);
 }
 
 // todo: implement
 CmpResult compare_year(Person *a, Person *b) {
-    return EQ;
+    if(a -> year_of_birth == b -> year_of_birth) {
+        return EQ;
+    } else if(a -> year_of_birth > b -> year_of_birth) {
+        return LT;
+    } else {
+        return GT;
+    }
 }
 
 // todo: implement
 CmpResult compare_occupation(Person *a, Person *b) {
-    return EQ;
+    return s_compare(a -> occupation, b -> occupation);
 }
 
 // todo: implement (with qsort)
