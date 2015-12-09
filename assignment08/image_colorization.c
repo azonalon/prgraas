@@ -131,7 +131,7 @@ Color *make_map(String file) {
                                map->data[first_byte + 2]
                                );
     }
-
+    free_image(map);
     return result;
 }
 
