@@ -30,7 +30,7 @@ typedef struct {
 } Image;
 
 void clear_image(Image *image) {
-    memset(image->data, 255, image->bytes_per_pixel * image->width * image->height); 
+    memset(image->data, 255, image->bytes_per_pixel * image->width * image->height);
 }
 
 /**
@@ -41,8 +41,13 @@ Creates a white image of the given pixel depth. The header and data of the image
 @return the created white image
 */
 Image *make_image(int width, int height, int bytes_per_pixel) {
-    // todo: implement
-    return NULL;
+    assert(bytes_per_pixel == 1 || bytes_per_pixel == 3);
+    Image* result = xmalloc(sizeof(Image));
+    result->data = xmalloc(bytes_per_pixel * width * height);
+    result->height = height;
+    result->width = width;
+    result->bytes_per_pixel = bytes_per_pixel;
+    return result;
 }
 
 /**
@@ -50,7 +55,8 @@ Free the image.
 @param[inout] image the image to free
 */
 void free_image(Image *image) {
-    // todo: implement
+    free(image->data);
+    free(image);
 }
 
 /**
@@ -82,9 +88,9 @@ Save the image in png format. If it exists, the output file will be overwritten.
 */
 void save_image(String file, Image *image) {
     if (image == NULL || image->data == NULL) return;
-    stbi_write_png(file, image->width, image->height, 
-        image->bytes_per_pixel, 
-        image->data, 
+    stbi_write_png(file, image->width, image->height,
+        image->bytes_per_pixel,
+        image->data,
         image->bytes_per_pixel * image->width);
 }
 
@@ -93,8 +99,11 @@ Create a color map that only uses the red color channel.
 @return a (dynamically allocated) array of 256 Colors
 */
 Color *make_map_red(void) {
-    // todo: implement
-    return NULL;
+    Color* result = xmalloc(256*sizeof(Color));
+    for(int i = 0; i < 256; i++) {
+        result[i] = make_color(i, 0, 0);
+    }
+    return result;
 }
 
 /**
@@ -104,8 +113,22 @@ Create a color map by scanning the given image horizontally. The image must be 2
 */
 Color *make_map(String file) {
     Image *map = load_image(file, 3);
-    // todo: implement
-    return NULL;
+    assert(map->width >= 256);
+
+    int bpp = map->bytes_per_pixel;
+    int byte_width = bpp * map->width;
+    Color* result = xmalloc(256 * sizeof(Color));
+    for(int i = 0; i < 256; i++) {
+        int first_byte = i * byte_width / 256;
+        first_byte = first_byte - first_byte % bpp;
+        result[i] = make_color(
+                               map->data[first_byte + 0],
+                               map->data[first_byte + 1],
+                               map->data[first_byte + 2]
+                               );
+    }
+
+    return result;
 }
 
 /**
@@ -115,13 +138,21 @@ Colorize the image with the colormap.
 @return the colorized output image
 */
 Image *colorize(Image *in, Color *map) {
-    // todo: implement
-    return NULL;
+    assert(in->bytes_per_pixel == 1);
+    Image* result = make_image(in->width, in->height, 3);
+    for(int i = 0; i < in->height * in->width; i++) {
+        assert(in->data[i] < 256);
+        Color color = map[in->data[i]];
+        result->data[3*i + 0] = color.red;
+        result->data[3*i + 1] = color.green;
+        result->data[3*i + 2] = color.blue;
+    }
+    return result;
 }
 
 void image_colorization_test(void) {
     Image *in = load_image("pebbles.png", 1);
-    
+
     Color *map1 = make_map_red();
     Image *out1 = colorize(in, map1);
     save_image("out-map1.png", out1);
@@ -147,7 +178,7 @@ void image_colorization_test(void) {
     free(map4);
 
     free_image(in);
-} 
+}
 
 
 
