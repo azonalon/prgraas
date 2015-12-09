@@ -55,8 +55,12 @@ Free the image.
 @param[inout] image the image to free
 */
 void free_image(Image *image) {
-    free(image->data);
-    free(image);
+    if (image != NULL){
+        if (image->data != NULL){
+            free(image->data);
+        }
+        free(image);
+    }
 }
 
 /**
@@ -120,7 +124,7 @@ Color *make_map(String file) {
     Color* result = xmalloc(256 * sizeof(Color));
     for(int i = 0; i < 256; i++) {
         int first_byte = i * byte_width / 256;
-        first_byte = first_byte - first_byte % bpp;
+        first_byte = first_byte - (first_byte % bpp);
         result[i] = make_color(
                                map->data[first_byte + 0],
                                map->data[first_byte + 1],
@@ -141,7 +145,6 @@ Image *colorize(Image *in, Color *map) {
     assert(in->bytes_per_pixel == 1);
     Image* result = make_image(in->width, in->height, 3);
     for(int i = 0; i < in->height * in->width; i++) {
-        assert(in->data[i] < 256);
         Color color = map[in->data[i]];
         result->data[3*i + 0] = color.red;
         result->data[3*i + 1] = color.green;
@@ -186,5 +189,6 @@ int main(void) {
     base_init();
     base_set_memory_check(true);
     image_colorization_test();
+    printf("Hello World\n");
     return 0;
 }
