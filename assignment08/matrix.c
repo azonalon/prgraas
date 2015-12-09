@@ -19,8 +19,17 @@ Creates a zero-initialized matrix of rows and columns matrix.
 @return a pointer to an array of n_rows pointers to rows; a row is an array of n_cols doubles 
 */
 Matrix *make_matrix(int n_rows, int n_cols) {
-    // todo: implement
-    return NULL;
+    Matrix *m = xmalloc(sizeof(Matrix));
+    m -> rows = n_rows;
+    m -> cols = n_cols;
+    m -> data = xmalloc(n_rows * sizeof(double*));
+    for(int i = 0; i < n_rows; i++) {
+        m -> data[i] = xmalloc(n_cols * sizeof(double));
+        for(int j = 0; j < n_cols; j++) {
+            m -> data[i][j] = 0.0;
+        }
+    }
+    return m;
 }
 
 /**
@@ -31,8 +40,13 @@ Creates a zero-initialized matrix of rows and columns matrix.
 @return a pointer to an array of n_rows pointers to rows; a row is an array of n_cols doubles 
 */
 Matrix *copy_matrix(double *data, int n_rows, int n_cols) {
-    // todo: implement
-    return NULL;
+    Matrix *m = make_matrix(n_rows, n_cols);
+    for(int i = 0; i < n_rows; i++) {
+        for(int j = 0; j < n_cols; j++) {
+            m -> data[i][j] = data[n_cols * i + j];
+        }
+    }
+    return m;
 }
 
 /**
@@ -40,7 +54,13 @@ Print a matrix.
 @param[in] m the matrix to print
 */
 void print_matrix(Matrix *m) {
-    // todo: implement
+    for(int i = 0; i < m -> rows; i++) {
+        for(int j = 0; j < m -> cols; j++) {
+            printf("%g ", m -> data[i][j]);
+        }
+        printf("\n");
+    }
+    printf("\n");
 }
 
 /**
@@ -50,7 +70,15 @@ Add two matrices.
 @return a new matrix whose elements are the element-wise sums of a and b
 */
 Matrix *add_matrices(/*in*/ Matrix *a, /*in*/ Matrix *b) {
-    // todo: implement
+    if(a -> cols == b -> cols && a -> rows == b -> rows) {
+        Matrix *m = make_matrix(a -> rows, a -> cols);
+        for(int i = 0; i < m -> rows; i++) {
+            for(int j = 0; j < m -> cols; j++) {
+                m -> data[i][j] = a -> data[i][j] + b -> data[i][j];
+            }
+        }
+        return m;
+    }
     return NULL;
 }
 
@@ -59,7 +87,11 @@ Free a matrix.
 @param[in] m the matrix to free
 */
 void free_matrix(Matrix *m) {
-    // todo: implement
+    for(int i = 0; i < m -> rows; i++) {
+        free(m -> data[i]);
+    }
+    free(m -> data);
+    free(m);
 }
 
 void matrix_test(void) {
