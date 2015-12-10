@@ -16,35 +16,26 @@ typedef struct Person Person;
 
 Person *make_person(String first, String last, int year_of_birth, String occupation) {
     Person* p = xmalloc(sizeof(Person));
-    p -> first_name = xmalloc(s_length(first) * sizeof(char));
+    //p -> first_name = xmalloc(s_length(first) * sizeof(char));
     p -> first_name = first;
-    p -> last_name = xmalloc(s_length(last) * sizeof(char));
+    //p -> last_name = xmalloc(s_length(last) * sizeof(char));
     p -> last_name = last;
     p -> year_of_birth = year_of_birth;
-    p -> occupation = xmalloc(s_length(occupation) * sizeof(char));
+    //p -> occupation = xmalloc(s_length(occupation) * sizeof(char));
     p -> occupation = occupation;
+    return p;
 }
 
 void println_person(Person *p) {
-    String output = s_concat(s_concat(s_concat(s_concat(s_concat(s_concat(
-        "(", p -> first_name), ", "), p -> last_name), ", %d, "), p -> occupation), ")");
-    printf(output, p -> year_of_birth);
+    printf("(%s, %s, %d, %s)\n", p -> first_name, p -> last_name, p -> year_of_birth, p -> occupation);
 }
 
 void free_person(Person *p) {
-    free(p -> first_name);
-    free(p -> last_name);
-    free(p -> occupation);
+    //free(p -> first_name);
+    //free(p -> last_name);
+    //free(p -> occupation);
     free(p);
 }
-
-/*
-typedef enum {
-    LT = -1,    // less than
-    EQ = 0,     // equal
-    GT = 1      // greater than
-} CmpResult;
-*/
 
 typedef CmpResult (*PersonComparator)(Person *a, Person *b);
 
@@ -75,19 +66,21 @@ CmpResult compare_occupation(Person *a, Person *b) {
 }
 
 // todo: implement (with qsort)
-int compare_first_name2(const void *u, const void *v) {
-    return 0;
+/*int compare_first_name2(const void *a, const void *b) {
+    return s_compare(a -> first_name, b -> first_name);
+}*/
+
+// todo: modify
+void swap(Person* a[], int i, int j) {
+    Person* tmp = make_person(
+        a[i] -> first_name, a[i] -> last_name, a[i] -> year_of_birth, a[i] -> occupation);
+    a[i] = a[j];
+    a[j] = tmp;
+    free_person(tmp);
 }
 
 // todo: modify
-void swap(int v[], int i, int j) {
-    int a = v[i];
-    v[i] = v[j];
-    v[j] = a;
-}
-
-// todo: modify
-void quicksort(int v[], int left, int right, PersonComparator cmp);
+void quicksort(Person* a[], int left, int right, PersonComparator cmp);
 
 void quicksort_test(void) {
     Person *a[4];
@@ -102,7 +95,7 @@ void quicksort_test(void) {
     }
 
     // todo: uncomment one at a time
-//  quicksort(a, 0, na - 1, compare_first_name);
+    quicksort(a, 0, na - 1, compare_first_name);
 //  quicksort(a, 0, na - 1, compare_last_name);
 //  quicksort(a, 0, na - 1, compare_year);
 //  quicksort(a, 0, na - 1, compare_occupation);
@@ -121,19 +114,19 @@ void quicksort_test(void) {
 }
 
 // todo: modify
-void quicksort(int v[], int left, int right, PersonComparator cmp) {
+void quicksort(Person* a[], int left, int right, PersonComparator cmp) {
     if (left >= right) return; // 0 or 1 elements, recursion end
-    swap(v, left, (left + right) / 2); // move pivot element to left
+    swap(a, left, (left + right) / 2); // move pivot element to left
     int j = left;
     for (int i = left + 1; i <= right; i++) {
-        if (v[i] < v[left]) {
-            swap(v, ++j, i);
+        if (cmp(a[i], a[left]) == LT) {
+            swap(a, ++j, i);
         }
         // assert: v[i] < v[left] for i = left+1..j
     }
-    swap(v, left, j); // move back pivot element
-    quicksort(v, left, j-1, cmp); // assert: v[i] < v[j] for i = left..j-1
-    quicksort(v, j+1, right, cmp); // assert: v[i] >= v[j] for i = j+1..right
+    swap(a, left, j); // move back pivot element
+    quicksort(a, left, j-1, cmp); // assert: v[i] < v[j] for i = left..j-1
+    quicksort(a, j+1, right, cmp); // assert: v[i] >= v[j] for i = j+1..right
 }
 
 int main(void) {
