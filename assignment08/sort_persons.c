@@ -14,28 +14,32 @@ struct Person {
 };
 typedef struct Person Person;
 
-Person *make_person(String first, String last, int year_of_birth, String occupation) {
+Person *make_person(
+        String first, String last, int year_of_birth, String occupation) {
     Person* p = xmalloc(sizeof(Person));
-    //p -> first_name = xmalloc(s_length(first) * sizeof(char));
     p -> first_name = first;
-    //p -> last_name = xmalloc(s_length(last) * sizeof(char));
     p -> last_name = last;
     p -> year_of_birth = year_of_birth;
-    //p -> occupation = xmalloc(s_length(occupation) * sizeof(char));
     p -> occupation = occupation;
     return p;
 }
 
 void println_person(Person *p) {
-    printf("(%s, %s, %d, %s)\n", p -> first_name, p -> last_name, p -> year_of_birth, p -> occupation);
+    printf("(%s, %s, %d, %s)\n",
+        p -> first_name, p -> last_name, p -> year_of_birth, p -> occupation);
 }
 
 void free_person(Person *p) {
-    //free(p -> first_name);
-    //free(p -> last_name);
-    //free(p -> occupation);
     free(p);
 }
+
+/*
+typedef enum {
+    LT = -1,    // less than
+    EQ = 0,     // equal
+    GT = 1      // greater than
+} CmpResult;
+*/
 
 typedef CmpResult (*PersonComparator)(Person *a, Person *b);
 
@@ -54,9 +58,9 @@ CmpResult compare_year(Person *a, Person *b) {
     if(a -> year_of_birth == b -> year_of_birth) {
         return EQ;
     } else if(a -> year_of_birth > b -> year_of_birth) {
-        return LT;
-    } else {
         return GT;
+    } else {
+        return LT;
     }
 }
 
@@ -66,17 +70,17 @@ CmpResult compare_occupation(Person *a, Person *b) {
 }
 
 // todo: implement (with qsort)
-/*int compare_first_name2(const void *a, const void *b) {
-    return s_compare(a -> first_name, b -> first_name);
-}*/
+int compare_first_name2(const void *a, const void *b) {
+    String a_name = (*(Person**) a) -> first_name;
+    String b_name = (*(Person**) b) -> first_name;
+    return s_compare(a_name, b_name);
+}
 
 // todo: modify
 void swap(Person* a[], int i, int j) {
-    Person* tmp = make_person(
-        a[i] -> first_name, a[i] -> last_name, a[i] -> year_of_birth, a[i] -> occupation);
+    Person* tmp = a[i];
     a[i] = a[j];
     a[j] = tmp;
-    free_person(tmp);
 }
 
 // todo: modify
@@ -95,12 +99,12 @@ void quicksort_test(void) {
     }
 
     // todo: uncomment one at a time
-    quicksort(a, 0, na - 1, compare_first_name);
+//  quicksort(a, 0, na - 1, compare_first_name);
 //  quicksort(a, 0, na - 1, compare_last_name);
 //  quicksort(a, 0, na - 1, compare_year);
 //  quicksort(a, 0, na - 1, compare_occupation);
 
-//	qsort(a, na, sizeof(Person*), compare_first_name2);
+//  qsort(a, na, sizeof(Person*), compare_first_name2);
 
     println();
     for (int i = 0; i < na; i++) {
