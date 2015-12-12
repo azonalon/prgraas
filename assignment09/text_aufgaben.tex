@@ -1,0 +1,49 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english, ngerman]{babel}
+\usepackage{amsmath,amsthm,verbatim,amssymb,amsfonts,amscd}
+\usepackage{enumerate}
+\usepackage{listings}
+\usepackage{courier}
+\usepackage[margin=1in]{geometry}
+\lstset{
+  numbers=left,
+  language=C,
+  basicstyle=\footnotesize\ttfamily,
+  breaklines=true,
+}
+\newcommand{\abs}[1]{\left| #1 \right| }
+
+
+\author{Felix Schrader, 3053850 \\
+      Eduard Sauter, 3053470 }
+\title{Programmieren I: Haus\"ubung 9}
+\date{}
+\begin{document}
+\maketitle
+\subsection*{Aufgabe 1}
+\begin{enumerate}[a)]
+  \item Wenn man einen Pointer auf mit \texttt{(x)malloc} allokierten Speicher
+    überschreibt, dann ist dieser Speicher danach nicht mehr verwendbar (und
+    auch nicht wieder freizugeben), da die Adresse des reservierten Speichers
+    nicht mehr bekannt ist. In diesem Fall steht dem Programm also weniger
+    Speicher im Heap zur Verfügung.
+  
+  \item \texttt{p7} ist ein Pointer auf reserviertem Speicher im Heap. Wenn man
+    also \texttt{p7} den Wert \texttt{NULL} zuweist, tritt das in a)
+    beschriebene Problem auf.
+  
+  \item In einer Liste ist direkter Zugriff auf ein Element nicht möglich. Man
+    muss die Liste vom Anfang bis zur gesuchten Position mit den Pointern auf
+    den jeweils nächsten node durchlaufen. Dies geschieht implizit in
+    \texttt{\detokenize{sl_get}}. In diesem Beispiel ist das ineffizient, da die
+    Liste in jedem Schleifendurchlauf neu durchlaufen wird. Effizienter wäre es
+    in der Schleife den Pointer auf den nächste node zu speichern und diesen im
+    nächsten Durchlauf zu verwenden.
+  
+  \item Am interessantesten fanden wir den Unterschied zwischen Listen und
+    Arrays, sowie die Vor- und Nachteile der beiden Datenstrukturen.
+    
+\end{enumerate} 
+
+\end{document}
