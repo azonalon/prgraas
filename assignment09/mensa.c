@@ -75,7 +75,7 @@ void wrong_dish(int input) {
 
 void right_dish(int input) {
     printf("Thank you!\n");
-    sl_remove(food, 0);
+    sl_remove(food, input);
     sl_remove(students, 0);
     sl_append(food, menu[i_rnd(menu_count)]);
     sl_append(students, menu[i_rnd(menu_count)]);
