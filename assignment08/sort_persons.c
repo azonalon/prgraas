@@ -99,8 +99,8 @@ void quicksort_test(void) {
     }
 
     // todo: uncomment one at a time
-//  quicksort(a, 0, na - 1, compare_first_name);
-//  quicksort(a, 0, na - 1, compare_last_name);
+    quicksort(a, 0, na - 1, compare_first_name);
+    quicksort(a, 0, na - 1, compare_last_name);
 //  quicksort(a, 0, na - 1, compare_year);
 //  quicksort(a, 0, na - 1, compare_occupation);
 

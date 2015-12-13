@@ -23,8 +23,10 @@ DoubleList *new_list(void) {
 }
 
 DoubleNode *new_node(double value) {
-    // todo: implement
-    return NULL;
+    DoubleNode* new_node = malloc(sizeof(DoubleNode));
+    new_node->value = value;
+    new_node->next = NULL;
+    return new_node;
 }
 
 void print(DoubleList *list) {
@@ -35,27 +37,66 @@ void print(DoubleList *list) {
     printf("]\n");
 }
 
-void append(DoubleList *list, double value) {
-    // todo: implement
+void append(DoubleList* list, double value) {
+    DoubleNode* n = new_node(value);
+    DoubleNode* last = list->last;
+    if (last != NULL) {
+        last->next = n;
+        list->last = n;
+    }
+    else {
+        list->first = n;
+        list->last = n;
+    }
 }
 
 void free_list(DoubleList *list) {
-    // todo: implement
+    DoubleNode* n = list->first;
+    while(n != NULL) {
+        DoubleNode* next = n->next;
+        free(n);
+        n = next;
+    }
+    free(list);
 }
 
 double sum(DoubleList *list) {
-    // todo: implement
-    return 0.0;
+    double sum = 0.0;
+    DoubleNode* n = list->first;
+
+    while(n != NULL) {
+        sum += n->value;
+        n = n->next;
+    }
+    return sum;
 }
 
 double max_element(DoubleList *list) {
-    // todo: implement
-    return 0.0;
+    double max = -1.0/0.0;
+    // negative infinity
+
+    DoubleNode* n = list->first;
+
+    while(n != NULL) {
+        if(n->value > max) {
+            max = n->value;
+        }
+        n = n->next;
+    }
+    return max;
 }
 
 int number_of_sign_changes(DoubleList *list) {
-    // todo: implement
-    return 0;
+    int sign_changes = 0;
+
+    DoubleNode* n = list->first;
+    while(n->next != NULL) {
+        if(n->value * n->next->value < 0) {
+            sign_changes++;
+        }
+        n = n->next;
+    }
+    return sign_changes;
 }
 
 DoubleList *list_of_string(char *s) {
@@ -81,32 +122,32 @@ int sum_test() {
     double x = sum(list);
     free_list(list);
     if (x != 0) return 1;
-    
+
     list = list_of_string("1, 11");
     x = sum(list);
     free_list(list);
     if (x != 12) return 2;
-    
+
     list = list_of_string("1, -11");
     x = sum(list);
     free_list(list);
     if (x != -10) return 3;
-    
+
     list = list_of_string("2, 1, -2");
     x = sum(list);
     free_list(list);
     if (x != 1) return 4;
-    
+
     list = list_of_string("4, -1, 2, -3, 4");
     x = sum(list);
     free_list(list);
     if (x != 6) return 5;
-    
+
     list = list_of_string("7, -1, 1, 2, -1, -1, -1, 2");
     x = sum(list);
     free_list(list);
     if (x != 8) return 6;
-    
+
     return 0;
 }
 
@@ -115,32 +156,32 @@ int max_element_test() {
     double x = max_element(list);
     free_list(list);
     if (x != 0) return 1;
-    
+
     list = list_of_string("1, 11");
     x = max_element(list);
     free_list(list);
     if (x != 11) return 2;
-    
+
     list = list_of_string("1, -11");
     x = max_element(list);
     free_list(list);
     if (x != 1) return 3;
-    
+
     list = list_of_string("2, 1, -2");
     x = max_element(list);
     free_list(list);
     if (x != 2) return 4;
-    
+
     list = list_of_string("4, -1, 2, -3, 4");
     x = max_element(list);
     free_list(list);
     if (x != 4) return 5;
-    
+
     list = list_of_string("7, -1, 1, 2, -1, -1, -1, 2");
     x = max_element(list);
     free_list(list);
     if (x != 7) return 6;
-    
+
     return 0;
 }
 
@@ -149,42 +190,42 @@ int number_of_sign_changes_test() {
     int i = number_of_sign_changes(list);
     free_list(list);
     if (i != 0) return 1;
-    
+
     list = list_of_string("1, 11");
     i = number_of_sign_changes(list);
     free_list(list);
     if (i != 0) return 2;
-    
+
     list = list_of_string("1, -11");
     i = number_of_sign_changes(list);
     free_list(list);
     if (i != 1) return 3;
-    
+
     list = list_of_string("2, 1, -2");
     i = number_of_sign_changes(list);
     free_list(list);
     if (i != 1) return 4;
-    
+
     list = list_of_string("4, -1, 2, -3, 4");
     i = number_of_sign_changes(list);
     free_list(list);
     if (i != 4) return 5;
-    
+
     list = list_of_string("7, -1, 1, 2, -1, -1, -1, 2");
     i = number_of_sign_changes(list);
     free_list(list);
     if (i != 4) return 6;
-    
+
     return 0;
 }
 
 int main(void) {
     int i = 0;
-    if ((i = sum_test()) == 0) printf("sum_test passed\n"); 
+    if ((i = sum_test()) == 0) printf("sum_test passed\n");
     else printf("sum_test %d failed\n", i);
-    if ((i = max_element_test()) == 0) printf("max_element_test passed\n"); 
+    if ((i = max_element_test()) == 0) printf("max_element_test passed\n");
     else printf("max_element_test %d failed\n", i);
-    if ((i = number_of_sign_changes_test()) == 0) printf("number_of_sign_changes_test passed\n"); 
+    if ((i = number_of_sign_changes_test()) == 0) printf("number_of_sign_changes_test passed\n");
     else printf("number_of_sign_changes_test %d failed\n", i);
     return 0;
 }
