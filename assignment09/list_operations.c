@@ -219,7 +219,7 @@ int number_of_sign_changes_test() {
     return 0;
 }
 
-int main(void) {
+int main() {
     int i = 0;
     if ((i = sum_test()) == 0) printf("sum_test passed\n");
     else printf("sum_test %d failed\n", i);

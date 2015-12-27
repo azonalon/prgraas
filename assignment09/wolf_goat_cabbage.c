@@ -85,12 +85,16 @@ void evaluate_situation(void) {
         printf("Meehehheh, in the distance you hear the goat scrunching. This is the end of the game. \n");
         finish();
     }
+    if(sl_contains(opposite_bank(), "wolf") &&
+       sl_contains(opposite_bank(), "cabbage")) {
+        printf("The wolf looks hungry and disappointed at the cabbage, but in the End nothing happened.\n");
+    }
     if(
        sl_contains(right, "cabbage") &&
        sl_contains(right, "wolf") &&
        sl_contains(right, "goat")
        ) {
-        printf("You won, congratulations!\n");
+        printf("Nice, you should definitely think of becoming a farmer, bro!\n");
         finish();
     }
 }
