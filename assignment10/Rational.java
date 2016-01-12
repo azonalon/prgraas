@@ -11,12 +11,15 @@ Run: java -cp .:prog1javalib.jar Rational
 */
 
 public class Rational {
+    
+    private int num, denom;
 
     public Rational(int numerator, int denominator) {
         if (denominator == 0) {
             throw new RuntimeException("zero denominator");
         }
-        // todo: implement
+        num = numerator / greatestCommonDivisor(numerator, denominator);
+        denom = denominator / greatestCommonDivisor(numerator, denominator);
     }
     
     public static Rational r(int numerator, int denominator) {
@@ -25,73 +28,84 @@ public class Rational {
 
     @Override
     public String toString() {
-        // todo: implement
-        return "";
+        if(denom == 1) {
+            return Integer.toString(num);
+        } else {
+            return num + "/" + denom;
+        }
     }
     
     @Override
     public boolean equals(Object o) {
-        // todo: implement
         if (o == null) return false;
         if (o instanceof Integer) {
-            // ...
+            if(num == (int) o && denom == 1) return true;
         }
-        // ...
         if (o instanceof Rational) {
-            // ...
+            if(num == ((Rational) o).num && denom == ((Rational) o).denom) return true;
         }
-        // ...
         return false;
     }
 
     public Rational plus(Rational r) {
-        // todo: implement
-        return r(1, 1);
+        return r(num * r.denom + denom * r.num, denom * r.denom);
     }
 
     public Rational minus(Rational r) {
-        // todo: implement
-        return r(1, 1);
+        return plus(r(-r.num,r.denom));
     }
 
     public Rational times(Rational r) {
-        // todo: implement
-        return r(1, 1);
+        return r(num * r.num, denom * r.denom);
     }
 
     public Rational dividedBy(Rational r) {
-        // todo: implement
-        return r(1, 1);
+        return times(r.inverse());
     }
     
-    public Rational inverse() { 
-        // todo: implement
-        return r(1, 1);
+    public Rational inverse() {
+        return r(denom, num);
     }
 
     public Rational plus(int i) {
-        // todo: implement
-        return r(1, 1);
+        return plus(r(i, 1));
     }
 
     public Rational minus(int i) {
-        // todo: implement
-        return r(1, 1);
+        return minus(r(i, 1));
     }
 
     public Rational times(int i) {
-        // todo: implement
-        return r(1, 1);
+        return times(r(i, 1));
     }
 
     public Rational dividedBy(int i) {
-        // todo: implement
-        return r(1, 1);
+        return dividedBy(r(i, 1));
     }
     
     private static int greatestCommonDivisor(int x, int y) {
-        // todo: implement
-        return 0;
+        if(x * y >= 0) {
+            if(x >= 0) {
+                if(x == 0) {
+                    return y;
+                } else {
+                    while(y != 0) {
+                        if(x > y) {
+                            x = x - y;
+                        } else {
+                            y = y - x;
+                        }
+                    }
+                    return x;
+                }
+            } else {
+                return -greatestCommonDivisor(-x, -y);
+            }
+        } else if(x < 0) {
+            return greatestCommonDivisor(-x, y);
+        } else {
+            return -greatestCommonDivisor(x, -y);
+        }
     }
     
     public static void rationalTest() {
@@ -139,6 +153,17 @@ public class Rational {
         // (-1/2) / (4/3) = -3/8
         Base.checkExpect(r(-1, 2).dividedBy(r(4, 3)), r(-3, 8));
         
+        // (1/2) + 1 = 3/2
+        Base.checkExpect(r(1, 2).plus(1), r(3, 2));
+        
+        // (1/2) - 1 = -1/2
+        Base.checkExpect(r(1, 2).minus(1), r(-1, 2));
+        
+        // (1/2) * 2 = 1/1
+        Base.checkExpect(r(1, 2).times(2), r(1, 1));
+        
+        // (1/2) / 2 = 1/4
+        Base.checkExpect(r(1, 2).dividedBy(2), r(1, 4));
     }
 
     public static void main(String[] args) {
