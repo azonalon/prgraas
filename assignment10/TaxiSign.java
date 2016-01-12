@@ -28,8 +28,12 @@ public class TaxiSign extends javafx.application.Application {
 	private Image onDraw() {
 		Image sign = circle(30, "navy", pen("red", 9));
 		sign = overlay(rectangle(60, 9, "red"), sign);
+		sign = overlay(rectangle(9, 60, "red"), sign);
 		sign = rotate(-45, sign);
+		sign = overlay(0,20,sign, rectangle(90, 130, "navy"));
+		sign = overlay(0, -40,text("TAXI", 30.0, pen("white", 3)),sign);
 		return sign;
+		//return sign;
 	}
 
 }
