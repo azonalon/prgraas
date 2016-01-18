@@ -46,12 +46,14 @@ public class MemoryGame extends javafx.application.Application {
     private void onFrontClicked(MouseEvent event, Object target) {
         System.out.println("front clicked"); 
         // todo: process the event and update the game accordingly
+        ((Card) target).setState(Card.State.BACK);
         updateField();
     }
     
     private void onBackClicked(MouseEvent event, Object target) {
         System.out.println("back clicked"); 
         // todo: process the event and update the game accordingly
+        ((Card) target).setState(Card.State.FRONT);
         updateField();
     }
     
@@ -75,7 +77,7 @@ public class MemoryGame extends javafx.application.Application {
 
     private Image onDraw() {
         // todo: output the field above a status line (hint: use grid to output the field)
-        return text("todo", 12, "red");
+        return grid(fieldImages);
     }
 
     @Override

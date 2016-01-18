@@ -26,8 +26,9 @@ public class Card {
         // https://github.com/MorbZ/OpenSansEmoji
         int[] codepoints = { codePoint };
         String emoji = new String(codepoints, 0, codepoints.length);
-        // todo: create memory card image showing the given emoji
-        return text("todo", 10, "red");
+        Image sqr = square(70, pen("black", 1));
+        Image emj = text(emoji, 36, "black");
+        return overlay(emj, sqr);
     }
     
     public void setState(State state) {
@@ -35,8 +36,14 @@ public class Card {
     }
 
     public Image getImage() {
-        // todo: return the correct image given the state of the card
-        return empty;
+        switch(state) {
+            case FRONT:
+                return front;
+            case BACK:
+                return back;
+            default:
+                return empty;
+        }
     }
     
     public void setFrontClickFunction(MouseFunction cf, Object target) {
