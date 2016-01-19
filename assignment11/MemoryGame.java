@@ -44,27 +44,64 @@ public class MemoryGame extends javafx.application.Application {
     }
     
     private void onFrontClicked(MouseEvent event, Object target) {
-        System.out.println("front clicked"); 
-        // todo: process the event and update the game accordingly
-        ((Card) target).setState(Card.State.BACK);
+        System.out.println("front clicked");
+        if(openCardsCount == 2) {
+            evaluateOpenCards();
+            // check whether the open cards are similar and update the game accordingly
+        }
         updateField();
     }
     
     private void onBackClicked(MouseEvent event, Object target) {
-        System.out.println("back clicked"); 
-        // todo: process the event and update the game accordingly
-        ((Card) target).setState(Card.State.FRONT);
+        System.out.println("back clicked");
+        if(openCardsCount == 0) {
+            ((Card) target).setState(Card.State.FRONT);
+            openCards[0] = (Card) target;
+            openCardsCount++;
+            // turn the clicked card around
+        } else if(openCardsCount == 1) {
+            ((Card) target).setState(Card.State.FRONT);
+            openCards[1] = (Card) target;
+            openCardsCount++;
+            // turn the clicked card around
+        } else if(openCardsCount == 2) {
+            evaluateOpenCards();
+            // check whether the open cards are similar and update the game accordingly
+        }
         updateField();
     }
     
     private void evaluateOpenCards() {
-        // todo: evaluate the currently open cards (if any) 
-        // and change the state of the game accordingly
+        if(openCards[0].equals(openCards[1])) {
+            openCards[0].setState(Card.State.EMPTY);
+            openCards[1].setState(Card.State.EMPTY);
+            openCardsCount = 0;
+            // clear similar cards
+            pairsFound++;
+            pairsTried++;
+        } else {
+            openCards[0].setState(Card.State.BACK);
+            openCards[1].setState(Card.State.BACK);
+            openCardsCount = 0;
+            // turn different cards around again
+            pairsTried++;
+        }
+    }
+    
+    private void swapCards(Card[][] a, int y1, int x1, int y2, int x2) {
+        Card tmp = a[y1][x1];
+        a[y1][x1] = a[y2][x2];
+        a[y2][x2] = tmp;
     }
     
     private void shuffleField() {
         Random rnd = new Random(System.currentTimeMillis());
-        // todo: shuffle the field (hint: use rnd.nextInt(UPPER_BOUND) to get a random integer)
+        for (int y = 0; y < ROWS; y++) {
+            for (int x = 0; x < COLUMNS; x++) {
+                swapCards(field, y, x, rnd.nextInt(ROWS), rnd.nextInt(COLUMNS));
+                // swap with a random card on the field
+            }
+        }
     }
     
     private void updateField() {
@@ -76,8 +113,11 @@ public class MemoryGame extends javafx.application.Application {
     }
 
     private Image onDraw() {
-        // todo: output the field above a status line (hint: use grid to output the field)
-        return grid(fieldImages);
+        Image grid = grid(fieldImages);
+        // arrange cards in a grid
+        Image statusBar = text(pairsFound + " pairs found in " + pairsTried + " tries.", 12, "black");
+        // show status bar
+        return above(grid, statusBar);
     }
 
     @Override

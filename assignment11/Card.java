@@ -26,9 +26,10 @@ public class Card {
         // https://github.com/MorbZ/OpenSansEmoji
         int[] codepoints = { codePoint };
         String emoji = new String(codepoints, 0, codepoints.length);
-        Image sqr = square(70, pen("black", 1));
-        Image emj = text(emoji, 36, "black");
-        return overlay(emj, sqr);
+        Image background = square(70, pen("white", 0));
+        Image bounding = square(SIZE, pen("black", 1));
+        Image emojiImage = text(emoji, 36, "black");
+        return overlay(emojiImage, overlay(bounding, background));
     }
     
     public void setState(State state) {
@@ -63,7 +64,8 @@ public class Card {
         if (o == null) return false;
         if (getClass() != o.getClass()) return false;
         Card c = (Card) o;
-        return false; // todo: implement equality expression
+        if (codePoint == c.codePoint) return true;
+        return false;
     }
 
 }
